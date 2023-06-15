@@ -25,10 +25,12 @@ public class MovementRandomizer : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, _newPosition, Time.deltaTime * lerpSpeed);
         transform.rotation = Quaternion.Lerp(transform.rotation, _newRotation, Time.deltaTime * lerpSpeed);
 
-        if (Vector3.Distance(transform.position, _newPosition) < 8f)
+        if (Vector3.Distance(transform.position, _newPosition) < 60f)
         {
             GetNewPosition();
         }
+
+        print(Vector3.Distance(transform.position, _newPosition));
     }
 
     void GetNewPosition()
