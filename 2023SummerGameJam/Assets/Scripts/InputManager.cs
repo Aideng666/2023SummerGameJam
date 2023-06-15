@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     InputAction interactAction;
     InputAction moveAction;
     InputAction jumpAction;
+    InputAction flyAction;
 
     public static InputManager Instance { get; set; }
     private void Awake()
@@ -30,6 +31,7 @@ public class InputManager : MonoBehaviour
         interactAction = playerInput.actions["Interact"];
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
+        flyAction = playerInput.actions["Fly"];
     }
 
     public PlayerInput GetPlayerInput()
@@ -40,6 +42,11 @@ public class InputManager : MonoBehaviour
     public Vector2 Move()
     {
         return moveAction.ReadValue<Vector2>();
+    }
+
+    public float Fly()
+    {
+        return flyAction.ReadValue<float>();
     }
 
     public bool Interact()

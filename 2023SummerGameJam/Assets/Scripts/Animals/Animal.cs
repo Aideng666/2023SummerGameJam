@@ -5,19 +5,19 @@ using UnityEngine;
 public class Animal : MonoBehaviour
 {
     [SerializeField] Transform cam;
-    [SerializeField] float moveSpeed = 5;
+    [SerializeField] protected float moveSpeed = 5;
 
-    CharacterController characterController;
-    Vector3 moveDir = Vector3.zero;
+    protected CharacterController characterController;
+    protected Vector3 moveDir = Vector3.zero;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         moveDir = Vector3.zero;
 
@@ -26,7 +26,8 @@ public class Animal : MonoBehaviour
             Move();
         }
 
-        characterController.SimpleMove(moveDir * moveSpeed);
+        //apply the move in the derived animal classes
+        //characterController.SimpleMove(moveDir * moveSpeed);
 
         if (moveDir.magnitude > 0.1f)
         {
