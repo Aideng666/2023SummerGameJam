@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour
     InputAction jumpAction;
     InputAction flyAction;
 
+    public bool interact = false;
+
     public static InputManager Instance { get; set; }
     private void Awake()
     {
