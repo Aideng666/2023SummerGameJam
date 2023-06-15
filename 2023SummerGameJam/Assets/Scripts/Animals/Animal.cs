@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Animal : MonoBehaviour
 {
-    [SerializeField] Transform cam;
     [SerializeField] protected float moveSpeed = 5;
 
+    Camera cam;
     protected CharacterController characterController;
     protected Vector3 moveDir = Vector3.zero;
 
@@ -14,6 +14,7 @@ public class Animal : MonoBehaviour
     protected virtual void Start()
     {
         characterController = GetComponent<CharacterController>();
+        cam = Camera.main;
     }
 
     // Update is called once per frame
@@ -39,6 +40,6 @@ public class Animal : MonoBehaviour
     {
         //Gets movement direction based on input and camera rotation
         moveDir = new Vector3(InputManager.Instance.Move().x, 0, InputManager.Instance.Move().y).normalized;
-        moveDir = Quaternion.Euler(0, cam.rotation.eulerAngles.y, 0) * moveDir;
+        moveDir = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0) * moveDir;
     }
 }

@@ -96,8 +96,6 @@ public class WoodPecker : Animal
     //If the bird runs out of stamina it will slowly descend to the ground to recharge
     IEnumerator BeginDescent()
     {
-        print("Descending");
-
         characterController.Move(Vector3.down * verticalFlightSpeed * Time.deltaTime);
 
         yield return null;
