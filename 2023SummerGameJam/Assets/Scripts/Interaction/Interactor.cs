@@ -46,6 +46,13 @@ public class Interactor : MonoBehaviour
                 if (_interactionPromptUI.isDisplayed) _interactionPromptUI.CloseInteract();
             }
         }
+        else
+        {
+            if (_interactionPromptUI.isDisplayed)
+            {
+                _interactionPromptUI.CloseInteract();
+            }
+        }
     }
 
     private void OnDrawGizmos()

@@ -36,6 +36,100 @@ public class CommunityManager : MonoBehaviour
         activeAnimal.isRecruited = true;
     }
 
+    private void Update()
+    {
+        SwapAnimals();
+    }
+
+    void SwapAnimals()
+    {
+        //Checks each hotkey and selects the closest animal of the chosen kind
+        if (InputManager.Instance.SelectAnimal1())
+        {
+            if (animalsInCommunity[0].Count > 0)
+            {
+                Animal closestAnimal = animalsInCommunity[0][0];
+
+                foreach (Animal animal in animalsInCommunity[0])
+                {
+                    if (Vector3.Distance(animal.transform.position, activeAnimal.transform.position) < Vector3.Distance(closestAnimal.transform.position, activeAnimal.transform.position))
+                    {
+                        closestAnimal = animal;
+                    }
+                }
+
+                activeAnimal.isActiveAnimal = false;
+                activeAnimal = closestAnimal;
+                activeAnimal.isActiveAnimal = true;
+
+                GameManager.Instance.UpdateCameraTarget();
+            }
+        }
+        if (InputManager.Instance.SelectAnimal2())
+        {
+            if (animalsInCommunity[1].Count > 0)
+            {
+                Animal closestAnimal = animalsInCommunity[1][0];
+
+                foreach (Animal animal in animalsInCommunity[1])
+                {
+                    if (Vector3.Distance(animal.transform.position, activeAnimal.transform.position) < Vector3.Distance(closestAnimal.transform.position, activeAnimal.transform.position))
+                    {
+                        closestAnimal = animal;
+                    }
+                }
+
+                activeAnimal.isActiveAnimal = false;
+                activeAnimal = closestAnimal;
+                activeAnimal.isActiveAnimal = true;
+
+                GameManager.Instance.UpdateCameraTarget();
+            }
+        }
+        if (InputManager.Instance.SelectAnimal3())
+        {
+            if (animalsInCommunity[2].Count > 0)
+            {
+                Animal closestAnimal = animalsInCommunity[2][0];
+
+                foreach (Animal animal in animalsInCommunity[2])
+                {
+                    if (Vector3.Distance(animal.transform.position, activeAnimal.transform.position) < Vector3.Distance(closestAnimal.transform.position, activeAnimal.transform.position))
+                    {
+                        closestAnimal = animal;
+                    }
+                }
+
+                activeAnimal.isActiveAnimal = false;
+                activeAnimal = closestAnimal;
+                activeAnimal.isActiveAnimal = true;
+
+                GameManager.Instance.UpdateCameraTarget();
+            }
+        }
+        if (InputManager.Instance.SelectAnimal4())
+        {
+            if (animalsInCommunity[3].Count > 0)
+            {
+                Animal closestAnimal = animalsInCommunity[3][0];
+
+                foreach (Animal animal in animalsInCommunity[3])
+                {
+                    if (Vector3.Distance(animal.transform.position, activeAnimal.transform.position) < Vector3.Distance(closestAnimal.transform.position, activeAnimal.transform.position))
+                    {
+                        closestAnimal = animal;
+                    }
+                }
+
+                activeAnimal.isActiveAnimal = false;
+                activeAnimal = closestAnimal;
+                activeAnimal.isActiveAnimal = true;
+
+                GameManager.Instance.UpdateCameraTarget();
+            }
+        }
+    }
+
     public void RecruitAnimal(Animal animal, AnimalTypes animalType)
     {
         switch (animalType)

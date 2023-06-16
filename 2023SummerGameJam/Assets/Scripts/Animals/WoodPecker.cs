@@ -23,30 +23,33 @@ public class WoodPecker : Animal
     {
         base.Update();
 
-        //Detects if the bird is flying or not
-        if (flightActivated && characterController.isGrounded)
+        if (isActiveAnimal)
         {
-            flightActivated = false;
-        }
+            //Detects if the bird is flying or not
+            if (flightActivated && characterController.isGrounded)
+            {
+                flightActivated = false;
+            }
 
-        if (!flightActivated && InputManager.Instance.Fly() > 0 && currentFlightStamina > 0)
-        {
-            flightActivated = true;
-        }
+            if (!flightActivated && InputManager.Instance.Fly() > 0 && currentFlightStamina > 0)
+            {
+                flightActivated = true;
+            }
 
-        //Moves horiztonally based on if the bird is in flight or not
-        if (!flightActivated)
-        {
-            characterController.SimpleMove(moveDir * moveSpeed);
-        }
-        else
-        {
-            characterController.Move(moveDir * flySpeed * Time.deltaTime);
-        }
+            //Moves horiztonally based on if the bird is in flight or not
+            if (!flightActivated)
+            {
+                characterController.SimpleMove(moveDir * moveSpeed);
+            }
+            else
+            {
+                characterController.Move(moveDir * flySpeed * Time.deltaTime);
+            }
 
-        Fly();
-        DepleteStamina();
-        GainStamina();
+            Fly();
+            DepleteStamina();
+            GainStamina();
+        }
     }
 
     void Fly()

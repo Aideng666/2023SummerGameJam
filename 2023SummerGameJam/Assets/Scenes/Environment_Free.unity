@@ -801,6 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldGravity: 5
+  cam: {fileID: 1754272175}
 --- !u!114 &571553243
 MonoBehaviour:
   m_ObjectHideFlags: 0

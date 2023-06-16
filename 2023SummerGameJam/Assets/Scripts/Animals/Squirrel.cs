@@ -8,6 +8,9 @@ public class Squirrel : Animal
     {
         base.Update();
 
-        characterController.SimpleMove(moveDir * moveSpeed);
+        if (isActiveAnimal)
+        {
+            characterController.SimpleMove(moveDir * moveSpeed);
+        }
     }
 }
