@@ -656,12 +656,6 @@ Transform:
   m_Father: {fileID: 656048644}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &350460620 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1772785991834550068, guid: fd0209e9d9d7f674f88ecbb4c20f9322,
-    type: 3}
-  m_PrefabInstance: {fileID: 1772785992660709990}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &496346995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,16 +1018,16 @@ RectTransform:
   m_GameObject: {fileID: 768623280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1963675968}
-  m_Father: {fileID: 826428755}
+  m_Father: {fileID: 3628246733286771628}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.139}
+  m_AnchoredPosition: {x: 0, y: 1.229}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &768623282
@@ -1049,7 +1043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiPanelInteract: {fileID: 1963675967}
-  armature: {fileID: 350460620}
+  armature: {fileID: 1365377002}
   KeyboardInteract: {fileID: 21300000, guid: 256a94c83bd00344097aaaf822c0f601, type: 3}
   GamepadInteract: {fileID: 21300000, guid: 256a94c83bd00344097aaaf822c0f601, type: 3}
   isDisplayed: 0
@@ -1114,31 +1108,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!4 &826428755 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1772785991834550069, guid: fd0209e9d9d7f674f88ecbb4c20f9322,
-    type: 3}
-  m_PrefabInstance: {fileID: 1772785992660709990}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &826428756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350460620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1620275ce603684eafeae2a2cca45ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactionPoint: {fileID: 924478151}
-  _interactionPointRadius: 0.5
-  _interactableMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _interactionPromptUI: {fileID: 768623282}
-  _numFound: 0
 --- !u!4 &846532246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3114434648573880518, guid: 29c774dacdcc73240b0c71228fdc6f2c,
@@ -1174,14 +1143,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924478150}
-  m_LocalRotation: {x: -0, y: -0.6983604, z: -0, w: 0.7157464}
-  m_LocalPosition: {x: 0.058, y: 0.393, z: 0.473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 826428755}
+  m_Father: {fileID: 3628246733286771628}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -88.591, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &996878104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,6 +1754,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2ec966d90911a454c9760fa28789a4f8,
     type: 3}
   m_PrefabInstance: {fileID: 1269491061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1365377002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7104136563832969113, guid: f7795b3ec3581654db17f52d7b749e89,
+    type: 3}
+  m_PrefabInstance: {fileID: 5822285424766704692}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1418558687 stripped
 Transform:
@@ -3530,6 +3505,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5822285424766704692}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3628246733286771631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365377002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1620275ce603684eafeae2a2cca45ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionPoint: {fileID: 924478151}
+  _interactionPointRadius: 2.5
+  _interactableMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _interactionPromptUI: {fileID: 768623282}
+  _numFound: 0
 --- !u!1001 &5822285424766704692
 PrefabInstance:
   m_ObjectHideFlags: 0
