@@ -16,6 +16,8 @@ public class InputManager : MonoBehaviour
     InputAction animal2Action;
     InputAction animal3Action;
     InputAction animal4Action;
+    InputAction buildAction;
+    InputAction rotateBuildAction;
 
     public bool interact = false;
 
@@ -42,6 +44,8 @@ public class InputManager : MonoBehaviour
         animal2Action = playerInput.actions["Animal2"];
         animal3Action = playerInput.actions["Animal3"];
         animal4Action = playerInput.actions["Animal4"];
+        buildAction = playerInput.actions["Build"];
+        rotateBuildAction = playerInput.actions["RotateBuild"];
     }
 
     public PlayerInput GetPlayerInput()
@@ -88,4 +92,13 @@ public class InputManager : MonoBehaviour
         return animal4Action.triggered;
     }
 
+    public bool Build()
+    {
+        return buildAction.triggered;
+    }
+
+    public float RotateBuild()
+    {
+        return rotateBuildAction.ReadValue<float>();
+    }
 }

@@ -5,11 +5,16 @@ using UnityEngine;
 public class Animal : MonoBehaviour, IInteractable
 {
     [SerializeField] AnimalTypes animalType;
+    [SerializeField] GameObject shelterPrefab;
     [SerializeField] protected float moveSpeed = 5;
 
     Camera cam;
     protected CharacterController characterController;
     protected Vector3 moveDir = Vector3.zero;
+    private bool isBuildingShelter;
+
+    public GameObject placeableShelter { get; private set; }
+    public bool IsBuildingShelter { get { return isBuildingShelter; } set { isBuildingShelter = value; placeableShelter = Instantiate(shelterPrefab); } }
     public bool isActiveAnimal { get; set; }
 
     public bool isRecruited { get; set; } = false;
@@ -35,13 +40,14 @@ public class Animal : MonoBehaviour, IInteractable
             gameObject.layer = defaultLayer;
             moveDir = Vector3.zero;
 
-            if (InputManager.Instance.Move().magnitude > 0.1f)
+            if (isBuildingShelter)
+            {
+                BuildShelter();
+            }
+            else if (InputManager.Instance.Move().magnitude > 0.1f)
             {
                 Move();
-            }
 
-            if (moveDir.magnitude > 0.1f)
-            {
                 transform.forward = moveDir;
             }
         }
@@ -75,6 +81,33 @@ public class Animal : MonoBehaviour, IInteractable
         }
 
         return true;
+    }
+
+    public void BuildShelter()
+    {
+        Ray ray = new Ray(CommunityManager.Instance.ShelterCam.transform.position, CommunityManager.Instance.ShelterCam.transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            placeableShelter.transform.position = hit.point;
+            //placeableShelter.transform.rotation = Quaternion.Euler(placeableShelter.transform.rotation.eulerAngles.x, CommunityManager.Instance.ShelterCam.transform.rotation.eulerAngles.y, placeableShelter.transform.rotation.eulerAngles.z);
+        }
+
+        if (InputManager.Instance.RotateBuild() < 0)
+        {
+            placeableShelter.transform.Rotate(Vector3.up, -1f);
+        }
+        else if (InputManager.Instance.RotateBuild() > 0)
+        {
+            placeableShelter.transform.Rotate(Vector3.up, 1f);
+        }
+
+        //Confirming Build
+        if (InputManager.Instance.Interact())
+        {
+            CommunityManager.Instance.CancelBuild();
+        }
     }
 
     public bool CanInteract()

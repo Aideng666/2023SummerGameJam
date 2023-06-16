@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,15 @@ using UnityEngine;
 public class CommunityManager : MonoBehaviour
 {
     [SerializeField] Animal startingAnimal;
+    [SerializeField] Camera mainCam;
+    [SerializeField] Camera shelterCam;
+    [SerializeField] CinemachineVirtualCamera virtualCam;
+    [SerializeField] float camMovespeed = 5;
     [HideInInspector] public Animal activeAnimal;
+
+    Vector3 startShelterCamPos;
+
+    public Camera ShelterCam { get { return shelterCam; } }
 
     //0 = Squirrel
     //1 = Woodpecker
@@ -34,11 +43,38 @@ public class CommunityManager : MonoBehaviour
         activeAnimal = startingAnimal;
         activeAnimal.isActiveAnimal = true;
         activeAnimal.isRecruited = true;
+
+        shelterCam.enabled = false;
     }
 
     private void Update()
     {
-        SwapAnimals();
+        if (!activeAnimal.IsBuildingShelter)
+        {
+            SwapAnimals();
+
+            if (InputManager.Instance.Build())
+            {
+                activeAnimal.IsBuildingShelter = true;
+
+                SwapCamera();
+
+                virtualCam.enabled = false;
+                startShelterCamPos = shelterCam.transform.position;
+            }
+        } 
+        else
+        {
+            Vector2 moveInput = InputManager.Instance.Move();
+
+            shelterCam.transform.position += Quaternion.Euler(0, shelterCam.transform.rotation.eulerAngles.y, 0) * (new Vector3(moveInput.x, 0, moveInput.y) * camMovespeed * Time.deltaTime);
+
+            if (InputManager.Instance.Build())
+            {
+                Destroy(activeAnimal.placeableShelter);
+                CancelBuild();
+            }
+        }
     }
 
     void SwapAnimals()
@@ -136,6 +172,23 @@ public class CommunityManager : MonoBehaviour
         activeAnimal.isActiveAnimal = true;
 
         GameManager.Instance.UpdateCameraTarget();
+    }
+
+    void SwapCamera()
+    {
+        shelterCam.enabled = !shelterCam.enabled;
+        mainCam.enabled = !mainCam.enabled;
+    }
+
+    public void CancelBuild()
+    {
+        if (activeAnimal.IsBuildingShelter)
+        {
+            activeAnimal.IsBuildingShelter = false;
+            shelterCam.transform.position = startShelterCamPos;
+            virtualCam.enabled = true;
+            SwapCamera();
+        }
     }
 
     public void RecruitAnimal(Animal animal, AnimalTypes animalType)
