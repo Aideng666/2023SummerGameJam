@@ -8,7 +8,10 @@ public class Beaver : Animal
     {
         base.Update();
 
-        characterController.SimpleMove(moveDir * moveSpeed);
+        if (isActiveAnimal)
+        {
+            characterController.SimpleMove(moveDir * moveSpeed);
+        }
     }
 
     void Swim()

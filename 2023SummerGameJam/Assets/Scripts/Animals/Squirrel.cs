@@ -8,8 +8,6 @@ public class Squirrel : Animal
     {
         base.Update();
 
-        characterController.SimpleMove(moveDir * moveSpeed);
-
         Shoot();
 
         if (Input.GetKey("w") & TouchingWall == true)
@@ -21,6 +19,10 @@ public class Squirrel : Animal
         if (Input.GetKeyUp("w"))
         {
             TouchingWall = false;
+        }
+        if (isActiveAnimal)
+        {
+            characterController.SimpleMove(moveDir * moveSpeed);
         }
     }
 

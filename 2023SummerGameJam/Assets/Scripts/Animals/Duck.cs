@@ -21,11 +21,14 @@ public class Duck : Animal
     {
         base.Update();
 
-        characterController.SimpleMove(moveDir * moveSpeed);
-
-        if (quackAction.triggered)
+        if (isActiveAnimal)
         {
-            Quack();
+            characterController.SimpleMove(moveDir * moveSpeed);
+
+            if (quackAction.triggered)
+            {
+                Quack();
+            }
         }
     }
 
