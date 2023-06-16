@@ -69,6 +69,10 @@ public class Animal : MonoBehaviour, IInteractable
         {
             CommunityManager.Instance.RecruitAnimal(this, animalType);
         }
+        else
+        {
+            CommunityManager.Instance.SwapAnimals(this);
+        }
 
         return true;
     }

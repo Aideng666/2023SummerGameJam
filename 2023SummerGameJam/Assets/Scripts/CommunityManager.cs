@@ -129,6 +129,14 @@ public class CommunityManager : MonoBehaviour
             }
         }
     }
+    public void SwapAnimals(Animal animal)
+    {
+        activeAnimal.isActiveAnimal = false;
+        activeAnimal = animal;
+        activeAnimal.isActiveAnimal = true;
+
+        GameManager.Instance.UpdateCameraTarget();
+    }
 
     public void RecruitAnimal(Animal animal, AnimalTypes animalType)
     {
