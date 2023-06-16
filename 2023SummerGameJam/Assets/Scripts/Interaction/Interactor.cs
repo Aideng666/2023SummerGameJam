@@ -21,27 +21,37 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
-        _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
-
-        if (_numFound > 0)
+        if (_animal.isActiveAnimal)
         {
-            var _interactable = _colliders[0].GetComponent<IInteractable>();
+            _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
 
-            if (_interactable != null)
+            if (_numFound > 0)
             {
-                if (!_interactionPromptUI.isDisplayed && _interactable.CanInteract()) _interactionPromptUI.SetUpInteract();
-                //TODO: Add curr animal check
-                if (InputManager.Instance.Interact()) // && _animal.isCurrAnimal)
-                {
-                    _interactable.Interact(this);
-                }
+                var _interactable = _colliders[0].GetComponent<IInteractable>();
 
+                if (_interactable != null)
+                {
+                    if (!_interactionPromptUI.isDisplayed && _interactable.CanInteract()) _interactionPromptUI.SetUpInteract();
+                    //TODO: Add curr animal check
+                    if (InputManager.Instance.Interact()) // && _animal.isCurrAnimal)
+                    {
+                        _interactable.Interact(this);
+                    }
+
+                }
+            }
+            else
+            {
+                if (_interactable != null) _interactable = null;
+                if (_interactionPromptUI.isDisplayed) _interactionPromptUI.CloseInteract();
             }
         }
         else
         {
-            if (_interactable != null) _interactable = null;
-            if (_interactionPromptUI.isDisplayed) _interactionPromptUI.CloseInteract();
+            if (_interactionPromptUI.isDisplayed)
+            {
+                _interactionPromptUI.CloseInteract();
+            }
         }
     }
 
