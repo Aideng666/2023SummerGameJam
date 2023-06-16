@@ -12,6 +12,10 @@ public class InputManager : MonoBehaviour
     InputAction moveAction;
     InputAction jumpAction;
     InputAction flyAction;
+    InputAction animal1Action;
+    InputAction animal2Action;
+    InputAction animal3Action;
+    InputAction animal4Action;
 
     public bool interact = false;
 
@@ -34,6 +38,10 @@ public class InputManager : MonoBehaviour
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
         flyAction = playerInput.actions["Fly"];
+        animal1Action = playerInput.actions["Animal1"];
+        animal2Action = playerInput.actions["Animal2"];
+        animal3Action = playerInput.actions["Animal3"];
+        animal4Action = playerInput.actions["Animal4"];
     }
 
     public PlayerInput GetPlayerInput()
@@ -60,4 +68,24 @@ public class InputManager : MonoBehaviour
     {
         return jumpAction.triggered;
     }
+    public bool SelectAnimal1()
+    {
+        return animal1Action.triggered;
+    }
+
+    public bool SelectAnimal2()
+    {
+        return animal2Action.triggered;
+    }
+
+    public bool SelectAnimal3()
+    {
+        return animal3Action.triggered;
+    }
+
+    public bool SelectAnimal4()
+    {
+        return animal4Action.triggered;
+    }
+
 }
