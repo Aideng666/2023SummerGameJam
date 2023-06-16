@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7104136563832969112}
   - component: {fileID: 5342863056068434863}
+  - component: {fileID: 5749611289610765099}
   m_Layer: 0
   m_Name: Beaver
   m_TagString: Untagged
@@ -149,3 +150,16 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &5749611289610765099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7104136563832969113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb8f0606696101418a606f028f1bde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5

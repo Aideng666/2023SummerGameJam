@@ -18,7 +18,7 @@ public class InteractionPromptUI : MonoBehaviour
     {
         _mainCam = Camera.main;
         _uiPanelInteract.SetActive(false);
-        playerInput = armature.GetComponent<PlayerInput>();
+        playerInput = InputManager.Instance.GetPlayerInput();
         if (playerInput != null)
         {
             scheme = playerInput.currentControlScheme;
