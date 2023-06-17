@@ -20,6 +20,7 @@ public class DayNightCycle : MonoBehaviour
     {
         dayAlertTween = DOTween.Sequence();
         dayAlert.transform.localScale = new Vector3(0f, 0f, 0f);
+        ShowDayAlert();
     }
 
     // Update is called once per frame
