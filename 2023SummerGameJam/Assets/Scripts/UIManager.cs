@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> buttons = new List<GameObject>();  
+    [SerializeField] List<GameObject> buttons = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()

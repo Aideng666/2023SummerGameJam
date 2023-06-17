@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fruit : MonoBehaviour, IInteractable
 {
     public int foodPoints;
+
     public bool Interact(Interactor player)
     {
         if (!CanInteract()) return false;
