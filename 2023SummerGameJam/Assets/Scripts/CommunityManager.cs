@@ -21,6 +21,7 @@ public class CommunityManager : MonoBehaviour
     //2 = beaver
     //3 = Duck
     public List<Animal>[] animalsInCommunity = new List<Animal>[4] { new List<Animal>(), new List<Animal>(), new List<Animal>(), new List<Animal>() };
+    public Dictionary<AnimalTypes, int> shelters = new Dictionary<AnimalTypes, int>();
     public static CommunityManager Instance { get; private set; }
 
     private void Awake()
@@ -45,6 +46,11 @@ public class CommunityManager : MonoBehaviour
         activeAnimal.isRecruited = true;
 
         shelterCam.enabled = false;
+
+        shelters.Add(AnimalTypes.Squirrel, 0);
+        shelters.Add(AnimalTypes.Woodpecker, 0);
+        shelters.Add(AnimalTypes.Beaver, 0);
+        shelters.Add(AnimalTypes.Duck, 0);
     }
 
     private void Update()

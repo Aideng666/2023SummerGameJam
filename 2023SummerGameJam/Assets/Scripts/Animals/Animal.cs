@@ -106,6 +106,7 @@ public class Animal : MonoBehaviour, IInteractable
         //Confirming Build
         if (InputManager.Instance.Interact())
         {
+            CommunityManager.Instance.shelters[animalType] += 1;
             CommunityManager.Instance.CancelBuild();
         }
     }
