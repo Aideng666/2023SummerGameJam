@@ -15,6 +15,9 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] TMP_Text materialText;
     [SerializeField] TMP_Text populationText;
 
+    public GameObject amountTextPrefab, resourceInstance;
+    public string textToDisplay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,19 +30,16 @@ public class ResourceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (InputManager.Instance.Jump())
+        {
+            GameObject amountTextInstance = Instantiate(amountTextPrefab, resourceInstance.transform);
+            amountTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
+        }
+
+
         foodText.text = foodCount.ToString();
         waterText.text = waterCount.ToString();
         materialText.text = materialCount.ToString();
         populationText.text = population.ToString();
-    }
-
-    public int GetFoodCount()
-    {
-        return foodCount;
-    }
-
-    public void SetFoodCount(int food)
-    {
-        foodCount += food;
     }
 }
