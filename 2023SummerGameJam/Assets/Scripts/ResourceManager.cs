@@ -36,7 +36,6 @@ public class ResourceManager : MonoBehaviour
             amountTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
         }
 
-
         foodText.text = foodCount.ToString();
         waterText.text = waterCount.ToString();
         materialText.text = materialCount.ToString();

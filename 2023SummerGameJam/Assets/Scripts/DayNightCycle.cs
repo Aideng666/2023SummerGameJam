@@ -5,6 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
+public enum DayNightState
+{
+    DAY,
+    NIGHT
+}
 public class DayNightCycle : MonoBehaviour
 {
     public Image mask;

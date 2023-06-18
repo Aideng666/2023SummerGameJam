@@ -23,9 +23,9 @@ public class UIManager : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
 
         sequence
-            .Append(buttons[0].transform.DOMoveX(1003, 1).SetEase(Ease.InOutExpo))
-            .Append(buttons[1].transform.DOMoveX(1003, 1).SetEase(Ease.InOutExpo))
-            .Append(buttons[2].transform.DOMoveX(1003, 1).SetEase(Ease.InOutExpo))
-            .Append(buttons[3].transform.DOMoveX(1003, 1).SetEase(Ease.InOutExpo));     
+            .Append(buttons[0].transform.DOMoveX(1003, 0.7f).SetEase(Ease.InOutExpo))
+            .Append(buttons[1].transform.DOMoveX(1003, 0.7f).SetEase(Ease.InOutExpo))
+            .Append(buttons[2].transform.DOMoveX(1003, 0.7f).SetEase(Ease.InOutExpo))
+            .Append(buttons[3].transform.DOMoveX(1003, 0.7f).SetEase(Ease.InOutExpo));     
     }
 }
