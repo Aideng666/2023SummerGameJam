@@ -22,7 +22,6 @@ public class InteractionPromptUI : MonoBehaviour
         if (playerInput != null)
         {
             scheme = playerInput.currentControlScheme;
-            Debug.Log("Scheme is " + scheme);
         }
         else Debug.Log("No input detected");
     }

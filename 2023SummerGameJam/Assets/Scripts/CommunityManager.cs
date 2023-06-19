@@ -10,10 +10,15 @@ public class CommunityManager : MonoBehaviour
     [SerializeField] Camera shelterCam;
     [SerializeField] CinemachineVirtualCamera virtualCam;
     [SerializeField] float camMovespeed = 5;
+    [SerializeField] float dayLength = 300f; // in seconds
     [HideInInspector] public Animal activeAnimal;
 
     Vector3 startShelterCamPos;
+    float elaspedDayTime = 0;
 
+    public float dayNum { get; private set; } = 0;
+
+    public float DayLength { get { return dayLength; } }
     public Camera ShelterCam { get { return shelterCam; } }
 
     //0 = Squirrel
@@ -55,6 +60,15 @@ public class CommunityManager : MonoBehaviour
 
     private void Update()
     {
+        if (elaspedDayTime >= dayLength)
+        {
+            elaspedDayTime = 0;
+            //GO TO NIGHT TIME EVENT
+            
+
+            dayNum++;
+        }
+
         if (!activeAnimal.IsBuildingShelter)
         {
             SwapAnimals();
@@ -81,6 +95,8 @@ public class CommunityManager : MonoBehaviour
                 CancelBuild();
             }
         }
+
+        elaspedDayTime += Time.deltaTime;
     }
 
     void SwapAnimals()
@@ -202,25 +218,25 @@ public class CommunityManager : MonoBehaviour
         switch (animalType)
         {
             case AnimalTypes.Squirrel:
-                Debug.Log("Recruited new Squirrel");
+
                 animalsInCommunity[0].Add(animal);
 
                 break;
 
             case AnimalTypes.Woodpecker:
-                Debug.Log("Recruited new Bird");
+
                 animalsInCommunity[1].Add(animal);
 
                 break;
 
             case AnimalTypes.Beaver:
-                Debug.Log("Recruited new Beaver");
+
                 animalsInCommunity[2].Add(animal);
 
                 break;
 
             case AnimalTypes.Duck:
-                Debug.Log("Recruited new Duck");
+
                 animalsInCommunity[3].Add(animal);
 
                 break;

@@ -37,8 +37,6 @@ public class Squirrel : Animal
         RaycastHit hit;
         if (Physics.Raycast(Head.position, Head.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
-
             Collider target = hit.transform.GetComponent<Collider>();
             if (target != null)
             {

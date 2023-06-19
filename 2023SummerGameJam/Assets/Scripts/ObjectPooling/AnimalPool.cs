@@ -39,19 +39,19 @@ public class AnimalPool : MonoBehaviour
     {
         for (int i = 0; i < numEachAnimal; i++)
         {
-            GameObject squirrel = Instantiate(squirrelPrefab);
+            GameObject squirrel = Instantiate(squirrelPrefab, transform);
             availableSquirrels.Enqueue(squirrel);
             squirrel.SetActive(false);
 
-            GameObject woodpecker = Instantiate(woodpeckerPrefab);
+            GameObject woodpecker = Instantiate(woodpeckerPrefab, transform);
             availableWoodpeckers.Enqueue(woodpecker);
             woodpecker.SetActive(false);
             
-            GameObject beaver = Instantiate(beaverPrefab);
+            GameObject beaver = Instantiate(beaverPrefab, transform);
             availableBeavers.Enqueue(beaver);
             beaver.SetActive(false);
             
-            GameObject duck = Instantiate(duckPrefab);
+            GameObject duck = Instantiate(duckPrefab, transform);
             availableDucks.Enqueue(duck);
             duck.SetActive(false);
         }
