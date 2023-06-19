@@ -42,6 +42,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Build",
+                    "type": "Button",
+                    "id": "c6874fbd-0e0c-40d7-aa5b-7eebcccc49c2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RotateBuild",
+                    "type": "PassThrough",
+                    "id": "22a7f85e-7ee9-48a6-a986-75255273dbab",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Animal1",
                     "type": "Button",
                     "id": "3c94a52d-7e87-4798-8b88-c77bbd3e8d82",
@@ -265,6 +283,50 @@
                     "action": "Animal4",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "629764d7-ca10-4777-82c8-c6ed57658dd4",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Build",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "af438899-e426-4193-9ca1-dd9fbaa21733",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateBuild",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "32f50b46-6e6b-412a-b633-c1bf0bbe1a07",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateBuild",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "e868d158-2a13-454b-b82f-db35a65ee540",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateBuild",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,27 @@ using UnityEngine;
 public class CommunityManager : MonoBehaviour
 {
     [SerializeField] Animal startingAnimal;
+    [SerializeField] Camera mainCam;
+    [SerializeField] Camera shelterCam;
+    [SerializeField] CinemachineVirtualCamera virtualCam;
+    [SerializeField] float camMovespeed = 5;
+    [SerializeField] float dayLength = 300f; // in seconds
     [HideInInspector] public Animal activeAnimal;
+
+    Vector3 startShelterCamPos;
+    float elaspedDayTime = 0;
+
+    public float dayNum { get; private set; } = 0;
+
+    public float DayLength { get { return dayLength; } }
+    public Camera ShelterCam { get { return shelterCam; } }
 
     //0 = Squirrel
     //1 = Woodpecker
     //2 = beaver
     //3 = Duck
     public List<Animal>[] animalsInCommunity = new List<Animal>[4] { new List<Animal>(), new List<Animal>(), new List<Animal>(), new List<Animal>() };
+    public Dictionary<AnimalTypes, int> shelters = new Dictionary<AnimalTypes, int>();
     public static CommunityManager Instance { get; private set; }
 
     private void Awake()
@@ -34,11 +49,54 @@ public class CommunityManager : MonoBehaviour
         activeAnimal = startingAnimal;
         activeAnimal.isActiveAnimal = true;
         activeAnimal.isRecruited = true;
+
+        shelterCam.enabled = false;
+
+        shelters.Add(AnimalTypes.Squirrel, 0);
+        shelters.Add(AnimalTypes.Woodpecker, 0);
+        shelters.Add(AnimalTypes.Beaver, 0);
+        shelters.Add(AnimalTypes.Duck, 0);
     }
 
     private void Update()
     {
-        SwapAnimals();
+        if (elaspedDayTime >= dayLength)
+        {
+            elaspedDayTime = 0;
+            //GO TO NIGHT TIME EVENT
+            
+
+            dayNum++;
+        }
+
+        if (!activeAnimal.IsBuildingShelter)
+        {
+            SwapAnimals();
+
+            if (InputManager.Instance.Build())
+            {
+                activeAnimal.IsBuildingShelter = true;
+
+                SwapCamera();
+
+                virtualCam.enabled = false;
+                startShelterCamPos = shelterCam.transform.position;
+            }
+        } 
+        else
+        {
+            Vector2 moveInput = InputManager.Instance.Move();
+
+            shelterCam.transform.position += Quaternion.Euler(0, shelterCam.transform.rotation.eulerAngles.y, 0) * (new Vector3(moveInput.x, 0, moveInput.y) * camMovespeed * Time.deltaTime);
+
+            if (InputManager.Instance.Build())
+            {
+                Destroy(activeAnimal.placeableShelter);
+                CancelBuild();
+            }
+        }
+
+        elaspedDayTime += Time.deltaTime;
     }
 
     void SwapAnimals()
@@ -138,30 +196,47 @@ public class CommunityManager : MonoBehaviour
         GameManager.Instance.UpdateCameraTarget();
     }
 
+    void SwapCamera()
+    {
+        shelterCam.enabled = !shelterCam.enabled;
+        mainCam.enabled = !mainCam.enabled;
+    }
+
+    public void CancelBuild()
+    {
+        if (activeAnimal.IsBuildingShelter)
+        {
+            activeAnimal.IsBuildingShelter = false;
+            shelterCam.transform.position = startShelterCamPos;
+            virtualCam.enabled = true;
+            SwapCamera();
+        }
+    }
+
     public void RecruitAnimal(Animal animal, AnimalTypes animalType)
     {
         switch (animalType)
         {
             case AnimalTypes.Squirrel:
-                Debug.Log("Recruited new Squirrel");
+
                 animalsInCommunity[0].Add(animal);
 
                 break;
 
             case AnimalTypes.Woodpecker:
-                Debug.Log("Recruited new Bird");
+
                 animalsInCommunity[1].Add(animal);
 
                 break;
 
             case AnimalTypes.Beaver:
-                Debug.Log("Recruited new Beaver");
+
                 animalsInCommunity[2].Add(animal);
 
                 break;
 
             case AnimalTypes.Duck:
-                Debug.Log("Recruited new Duck");
+
                 animalsInCommunity[3].Add(animal);
 
                 break;

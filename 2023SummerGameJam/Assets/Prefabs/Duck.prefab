@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animalType: 3
+  shelterPrefab: {fileID: 7337831539509590033, guid: 280a9b07f4ea8a8449cda9fc8a1aec60,
+    type: 3}
   moveSpeed: 5
   quackAction:
     m_Name: Quack
