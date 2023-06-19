@@ -32,14 +32,14 @@ public class ButtonAnimations : MonoBehaviour
     {     
         Tween buttonTween;
 
-        buttonTween = button.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.7f).SetEase(Ease.InOutExpo);
+        buttonTween = button.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f).SetEase(Ease.InOutExpo);
     }
 
     public void ButtonExit(GameObject button)
     {
         Tween buttonTween;
 
-        buttonTween = button.transform.DOScale(new Vector3(1f, 1f, 1f), 0.7f).SetEase(Ease.InOutExpo);
+        buttonTween = button.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f).SetEase(Ease.InOutExpo);
     }
 
     public void ButtonClick(GameObject button)
