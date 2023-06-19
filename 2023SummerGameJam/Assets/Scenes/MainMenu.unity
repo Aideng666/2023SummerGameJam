@@ -7084,7 +7084,7 @@ PrefabInstance:
     - target: {fileID: 7784954452135394344, guid: a6aa11bfe6c554344a538b3d2e98648b,
         type: 3}
       propertyPath: m_Name
-      value: WoodButton (1)
+      value: AudioTab
       objectReference: {fileID: 0}
     - target: {fileID: 7784954452135394345, guid: a6aa11bfe6c554344a538b3d2e98648b,
         type: 3}
@@ -9138,7 +9138,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570618752}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
@@ -10270,7 +10270,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658737081}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
@@ -12524,7 +12524,7 @@ PrefabInstance:
     - target: {fileID: 7784954452135394344, guid: a6aa11bfe6c554344a538b3d2e98648b,
         type: 3}
       propertyPath: m_Name
-      value: WoodButton
+      value: ControlTab
       objectReference: {fileID: 0}
     - target: {fileID: 7784954452135394345, guid: a6aa11bfe6c554344a538b3d2e98648b,
         type: 3}
