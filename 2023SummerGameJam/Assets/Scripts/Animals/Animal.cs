@@ -9,6 +9,7 @@ public class Animal : MonoBehaviour, IInteractable
     [SerializeField] protected float moveSpeed = 5;
 
     Camera cam;
+    Animator animator;
     protected CharacterController characterController;
     protected Vector3 moveDir = Vector3.zero;
     private bool isBuildingShelter;
@@ -32,6 +33,7 @@ public class Animal : MonoBehaviour, IInteractable
     {
         characterController = GetComponent<CharacterController>();
         cam = Camera.main;
+        animator = GetComponentInChildren<Animator>();
 
         defaultLayer = LayerMask.NameToLayer("Default");
         interactableLayer = LayerMask.NameToLayer("Interactable");
@@ -47,6 +49,8 @@ public class Animal : MonoBehaviour, IInteractable
 
             if (isBuildingShelter)
             {
+                animator?.SetBool("Running", false);
+
                 BuildShelter();
             }
             else if (InputManager.Instance.Move().magnitude > 0.1f)
@@ -54,6 +58,12 @@ public class Animal : MonoBehaviour, IInteractable
                 Move();
 
                 transform.forward = moveDir;
+
+                animator?.SetBool("Running", true);
+            }
+            else
+            {
+                animator?.SetBool("Running", false);
             }
         }
         else
@@ -88,6 +98,15 @@ public class Animal : MonoBehaviour, IInteractable
         if (isMoving)
         {
             characterController.SimpleMove(chosenDirection * moveSpeed);
+
+            animator?.SetBool("Running", true);
+        }
+        else
+        {
+            //Still use the move function so gravity gets applied
+            characterController.SimpleMove(chosenDirection * 0);
+
+            animator?.SetBool("Running", false);
         }
 
         elaspedMoveTime += Time.deltaTime;
