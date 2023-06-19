@@ -37,10 +37,10 @@ public class UIManager : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
 
         sequence
-            .Append(buttons[0].transform.DOMoveX(1003, 0.6f).SetEase(Ease.InOutExpo))
-            .Append(buttons[1].transform.DOMoveX(1003, 0.6f).SetEase(Ease.InOutExpo))
-            .Append(buttons[2].transform.DOMoveX(1003, 0.6f).SetEase(Ease.InOutExpo))
-            .Append(buttons[3].transform.DOMoveX(1003, 0.6f).SetEase(Ease.InOutExpo));     
+            .Append(buttons[0].transform.DOMoveX(1003, 0.5f).SetEase(Ease.InOutExpo))
+            .Append(buttons[1].transform.DOMoveX(1003, 0.5f).SetEase(Ease.InOutExpo))
+            .Append(buttons[2].transform.DOMoveX(1003, 0.5f).SetEase(Ease.InOutExpo))
+            .Append(buttons[3].transform.DOMoveX(1003, 0.5f).SetEase(Ease.InOutExpo));     
     }
 
     public void SettingsCanvasIn()
