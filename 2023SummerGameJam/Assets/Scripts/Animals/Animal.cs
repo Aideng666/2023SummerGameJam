@@ -5,17 +5,27 @@ using UnityEngine;
 public class Animal : MonoBehaviour, IInteractable
 {
     [SerializeField] AnimalTypes animalType;
+    [SerializeField] GameObject shelterPrefab;
     [SerializeField] protected float moveSpeed = 5;
 
     Camera cam;
     protected CharacterController characterController;
     protected Vector3 moveDir = Vector3.zero;
-    public bool isActiveAnimal { get; set; }
+    private bool isBuildingShelter;
 
+    public GameObject placeableShelter { get; private set; }
+    public bool IsBuildingShelter { get { return isBuildingShelter; } set { isBuildingShelter = value; placeableShelter = Instantiate(shelterPrefab); } }
+    public bool isActiveAnimal { get; set; }
     public bool isRecruited { get; set; } = false;
 
     LayerMask defaultLayer;
     LayerMask interactableLayer;
+
+    //For AutoMove when animals are not active
+    Vector3 chosenDirection = Vector3.zero;
+    float moveTime = 1f;
+    float elaspedMoveTime = 0;
+    bool isMoving = false;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -35,19 +45,22 @@ public class Animal : MonoBehaviour, IInteractable
             gameObject.layer = defaultLayer;
             moveDir = Vector3.zero;
 
-            if (InputManager.Instance.Move().magnitude > 0.1f)
+            if (isBuildingShelter)
+            {
+                BuildShelter();
+            }
+            else if (InputManager.Instance.Move().magnitude > 0.1f)
             {
                 Move();
-            }
 
-            if (moveDir.magnitude > 0.1f)
-            {
                 transform.forward = moveDir;
             }
         }
         else
         {
             gameObject.layer = interactableLayer;
+
+            AutoMove();
         }
     }
 
@@ -58,6 +71,28 @@ public class Animal : MonoBehaviour, IInteractable
         moveDir = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0) * moveDir;
     }
 
+    void AutoMove()
+    {
+        if (elaspedMoveTime >= moveTime)
+        {
+            isMoving = !isMoving;
+            elaspedMoveTime = 0;
+
+            if (isMoving)
+            {
+                chosenDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
+                transform.forward = chosenDirection;
+            }
+        }
+
+        if (isMoving)
+        {
+            characterController.SimpleMove(chosenDirection * moveSpeed);
+        }
+
+        elaspedMoveTime += Time.deltaTime;
+    }
+
     public bool Interact(Interactor interactor)
     {
         if (!CanInteract())
@@ -65,9 +100,13 @@ public class Animal : MonoBehaviour, IInteractable
             return false;
         }
 
-        if (!isRecruited)
+        if (!isRecruited && CommunityManager.Instance.shelters[animalType] >= CommunityManager.Instance.animalsInCommunity[(int)animalType].Count)
         {
             CommunityManager.Instance.RecruitAnimal(this, animalType);
+        }
+        else if (!isRecruited)
+        {
+            print($"Not Enough Shelters to recruit this animal, build more {animalType} shelters first");
         }
         else
         {
@@ -75,6 +114,34 @@ public class Animal : MonoBehaviour, IInteractable
         }
 
         return true;
+    }
+
+    public void BuildShelter()
+    {
+        Ray ray = new Ray(CommunityManager.Instance.ShelterCam.transform.position, CommunityManager.Instance.ShelterCam.transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            placeableShelter.transform.position = hit.point;
+            //placeableShelter.transform.rotation = Quaternion.Euler(placeableShelter.transform.rotation.eulerAngles.x, CommunityManager.Instance.ShelterCam.transform.rotation.eulerAngles.y, placeableShelter.transform.rotation.eulerAngles.z);
+        }
+
+        if (InputManager.Instance.RotateBuild() < 0)
+        {
+            placeableShelter.transform.Rotate(Vector3.up, -1f);
+        }
+        else if (InputManager.Instance.RotateBuild() > 0)
+        {
+            placeableShelter.transform.Rotate(Vector3.up, 1f);
+        }
+
+        //Confirming Build
+        if (InputManager.Instance.Interact())
+        {
+            CommunityManager.Instance.shelters[animalType] += 1;
+            CommunityManager.Instance.CancelBuild();
+        }
     }
 
     public bool CanInteract()
