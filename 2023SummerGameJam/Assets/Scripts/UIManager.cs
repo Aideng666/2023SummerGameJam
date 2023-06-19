@@ -7,11 +7,23 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> buttons = new List<GameObject>();
     [SerializeField] List<GameObject> canvases = new List<GameObject>();
-    Tween settingsCanvasTween;
+    Sequence settingsCanvasTween;
+    Sequence creditsCanvasTween;
+    Sequence exitCanvasTween;
+    float panelTweenTime = 0.8f;
 
     // Start is called before the first frame update
     void Start()
     {
+        settingsCanvasTween = DOTween.Sequence();
+        creditsCanvasTween = DOTween.Sequence();
+        exitCanvasTween = DOTween.Sequence();
+
+        for (int i = 1; i < canvases.Count; ++i)
+        {
+            canvases[i].transform.localScale = new Vector3(0f, 0f, 0f);
+        }
+
         ButtonAnim();
     }
 
@@ -31,8 +43,51 @@ public class UIManager : MonoBehaviour
             .Append(buttons[3].transform.DOMoveX(1003, 0.6f).SetEase(Ease.InOutExpo));     
     }
 
-    public void SettingsButton()
+    public void SettingsCanvasIn()
     {     
-        settingsCanvasTween = canvases[0].transform.DOScale(new Vector3(0f, 0f, 0f), 0.8f).SetEase(Ease.InOutExpo);
+        // scale out main menu canvas
+        settingsCanvasTween.Append(canvases[0].transform.DOScale(new Vector3(0f, 0f, 0f), panelTweenTime).SetEase(Ease.InOutExpo))
+        // scale in the settings canvas
+            .Append(canvases[1].transform.DOScale(new Vector3(1f, 1f, 1f), panelTweenTime).SetEase(Ease.InOutExpo));
+    }
+
+    public void SettingsCanvasOut()
+    {
+        // scale out settings canvas
+        settingsCanvasTween.Append(canvases[1].transform.DOScale(new Vector3(0f, 0f, 0f), panelTweenTime).SetEase(Ease.InOutExpo))
+        // scale in the main menu canvas
+            .Append(canvases[0].transform.DOScale(new Vector3(1f, 1f, 1f), panelTweenTime).SetEase(Ease.InOutExpo));
+    }
+
+    public void CreditsCanvasIn()
+    {
+        // scale out main menu canvas
+        creditsCanvasTween.Append(canvases[0].transform.DOScale(new Vector3(0f, 0f, 0f), panelTweenTime).SetEase(Ease.InOutExpo))
+        // scale in the credits canvas
+            .Append(canvases[2].transform.DOScale(new Vector3(1f, 1f, 1f), panelTweenTime).SetEase(Ease.InOutExpo));
+    }
+
+    public void CreditsCanvasOut()
+    {
+        // scale out credits canvas
+        creditsCanvasTween.Append(canvases[2].transform.DOScale(new Vector3(0f, 0f, 0f), panelTweenTime).SetEase(Ease.InOutExpo))
+        // scale in the main menu canvas
+            .Append(canvases[0].transform.DOScale(new Vector3(1f, 1f, 1f), panelTweenTime).SetEase(Ease.InOutExpo));
+    }
+
+    public void ExitCanvasIn()
+    {
+        // scale out main menu canvas
+        exitCanvasTween.Append(canvases[0].transform.DOScale(new Vector3(0f, 0f, 0f), panelTweenTime).SetEase(Ease.InOutExpo))
+        // scale in the exit canvas
+            .Append(canvases[3].transform.DOScale(new Vector3(1f, 1f, 1f), panelTweenTime).SetEase(Ease.InOutExpo));
+    }
+
+    public void ExitCanvasOut()
+    {
+        // scale out exit canvas
+        exitCanvasTween.Append(canvases[3].transform.DOScale(new Vector3(0f, 0f, 0f), panelTweenTime).SetEase(Ease.InOutExpo))
+        // scale in the main menu canvas
+            .Append(canvases[0].transform.DOScale(new Vector3(1f, 1f, 1f), panelTweenTime).SetEase(Ease.InOutExpo));
     }
 }

@@ -22,12 +22,6 @@ public class ButtonAnimations : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ButtonHover(GameObject button)
     {     
         Tween buttonTween;
