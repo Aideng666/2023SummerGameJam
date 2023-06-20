@@ -12,7 +12,7 @@ public class Fruit : MonoBehaviour, IInteractable
         if (!CanInteract()) return false;
 
         Debug.Log("Collected " + foodPoints + " fruit!");
-        ResourceManager.fruitPoints += foodPoints;
+        ResourceManager.addToFood(foodPoints);
 
         deplete();
         return true;
@@ -45,12 +45,15 @@ public class Fruit : MonoBehaviour, IInteractable
         return true;
     }
 
+
+    //Function for testing
     [ContextMenu("Limit Resources")]
     public void limit()
     {
         ResourceManager.limitResources(0.5f, 0.5f);
     }
 
+    //Function for testing
     [ContextMenu("Replenish Resources")]
     public void spawn()
     {

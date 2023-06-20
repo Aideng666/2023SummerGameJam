@@ -5,7 +5,7 @@ public static class ResourceManager
     [SerializeField] static GameObject[] fruit;
     [SerializeField] static GameObject[] wood;
 
-    public static int woodPoints = 0, fruitPoints = 0;
+    public static int woodPoints = 0, fruitPoints = 0, waterPoints;
 
     //Spawn rate of each (Non-independant probability, i.e. if p=0.4, then 0.6 of all fruit will spawn)
     public static float fruitProb, woodProb;
@@ -55,6 +55,24 @@ public static class ResourceManager
             Wood tempWood = wood.GetComponent<Wood>();
             tempWood.replenish();
         }
+    }
+
+    public static int addToWood(int amount)
+    {
+        woodPoints += amount;
+        return woodPoints;
+    }
+
+    public static int addToFood(int amount)
+    {
+        fruitPoints += amount;
+        return fruitPoints;
+    }
+
+    public static int addToWater(int amount)
+    {
+        waterPoints += amount;
+        return waterPoints;
     }
 
     static GameObject[] SelectRandom(GameObject[] objectList, float fraction)

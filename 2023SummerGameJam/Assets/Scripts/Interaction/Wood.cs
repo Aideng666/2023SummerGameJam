@@ -10,7 +10,7 @@ public class Wood : MonoBehaviour, IInteractable
         if (!CanInteract()) return false;
         
         Debug.Log("Collected " + woodPoints + " wood!");
-        ResourceManager.woodPoints += woodPoints;
+        ResourceManager.addToWood(woodPoints);
 
         deplete();
         return true;
