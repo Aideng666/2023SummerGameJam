@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
     InputAction animal4Action;
     InputAction buildAction;
     InputAction rotateBuildAction;
+    InputAction pauseAction;
 
     public bool interact = false;
 
@@ -46,6 +47,7 @@ public class InputManager : MonoBehaviour
         animal4Action = playerInput.actions["Animal4"];
         buildAction = playerInput.actions["Build"];
         rotateBuildAction = playerInput.actions["RotateBuild"];
+        pauseAction = playerInput.actions["Pause"];
     }
 
     public PlayerInput GetPlayerInput()
@@ -100,5 +102,10 @@ public class InputManager : MonoBehaviour
     public float RotateBuild()
     {
         return rotateBuildAction.ReadValue<float>();
+    }
+
+    public bool Pause()
+    {
+        return pauseAction.triggered;
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class AudioManager : MonoBehaviour
@@ -47,5 +48,23 @@ public class AudioManager : MonoBehaviour
         }
 
         s.source.Play();
+    }
+
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found! Make sure you spelt it correctly!");
+            return;
+        }
+
+        s.source.Stop();
+    }
+
+    public void ChangeMusicVolume(float value)
+    {
+        AudioListener.volume = value;
     }
 }
