@@ -1460,6 +1460,13 @@ MonoBehaviour:
     _clip: {fileID: 8300000, guid: c52a5c3666a40ee49a12887f084f7dc0, type: 3}
     _volume: 0.5
     _pitch: 1
+    _loop: 1
+    source: {fileID: 0}
+  - name: ButtonClcik
+    _clip: {fileID: 8300000, guid: 0db4b7cba13e69d4ca961a52c0c1cf0d, type: 3}
+    _volume: 0.5
+    _pitch: 1
+    _loop: 0
     source: {fileID: 0}
 --- !u!1 &1193500415
 GameObject:
