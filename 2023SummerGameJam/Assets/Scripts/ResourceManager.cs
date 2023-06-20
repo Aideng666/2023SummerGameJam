@@ -48,15 +48,12 @@ public static class ResourceManager
         {
             Fruit tempFruit = fruit.GetComponent<Fruit>();
             tempFruit.replenish();
-            if (tempFruit) tempFruit.status = false;
         }
 
         foreach (GameObject wood in woodSpawn)
         {
-            wood.SetActive(false);
-            wood.tag = "EmptyWood";
             Wood tempWood = wood.GetComponent<Wood>();
-            if (tempWood) tempWood.status = false;
+            tempWood.replenish();
         }
     }
 
