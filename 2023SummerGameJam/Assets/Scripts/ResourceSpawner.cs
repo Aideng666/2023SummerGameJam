@@ -25,13 +25,13 @@ public class ResourceSpawner : MonoBehaviour
             if (i < numFruit) {
                 resource = Instantiate(fruitPrefab, randomLocs[i], randomRotation);
                 resource.transform.parent = fruitObjects.transform;
-                Debug.Log("Spawned resource " + i);
+                //Debug.Log("Spawned resource " + i);
             }
             else
             {
                 resource = Instantiate(woodPrefab, randomLocs[i], randomRotation);
                 resource.transform.parent = woodObjects.transform;
-                Debug.Log("Spawned resource " + i);
+                //Debug.Log("Spawned resource " + i);
             }
         }
     }

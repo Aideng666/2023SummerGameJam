@@ -33,7 +33,7 @@ public class UIResourceManager : MonoBehaviour
         if (InputManager.Instance.Jump())
         {
             GameObject amountTextInstance = Instantiate(amountTextPrefab, resourceInstance.transform);
-            amountTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
+            amountTextInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText(textToDisplay);
         }
 
         foodText.text = foodCount.ToString();
