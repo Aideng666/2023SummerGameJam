@@ -14,8 +14,6 @@ public class UIManager : MonoBehaviour
     Sequence exitCanvasTween;
     float panelTweenTime = 0.8f;
 
-    [SerializeField] private Slider _slider;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,8 +31,6 @@ public class UIManager : MonoBehaviour
         }
 
         ButtonAnim();
-
-        _slider.onValueChanged.AddListener(val => AudioManager.Instance.ChangeMusicVolume(val));
     }
 
     public void QuitGame()
