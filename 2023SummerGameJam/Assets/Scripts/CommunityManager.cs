@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class CommunityManager : MonoBehaviour
 {
+    [SerializeField] Transform communityArea;
     [SerializeField] Animal startingAnimal;
     [SerializeField] Camera mainCam;
     [SerializeField] Camera shelterCam;
     [SerializeField] CinemachineVirtualCamera virtualCam;
+    [SerializeField] float communityRadius = 20;
     [SerializeField] float camMovespeed = 5;
     [SerializeField] float dayLength = 300f; // in seconds
     [HideInInspector] public Animal activeAnimal;
@@ -20,6 +22,9 @@ public class CommunityManager : MonoBehaviour
 
     public float DayLength { get { return dayLength; } }
     public Camera ShelterCam { get { return shelterCam; } }
+    public Camera MainCam { get { return mainCam; } }
+    public Transform CommunityArea { get { return communityArea; } }
+    public float CommunityRadius { get { return communityRadius; } }
 
     //0 = Squirrel
     //1 = Woodpecker
@@ -66,6 +71,7 @@ public class CommunityManager : MonoBehaviour
             //GO TO NIGHT TIME EVENT
             
 
+            ResourceManager.replenishResources(0.7f);
             dayNum++;
         }
 
@@ -243,5 +249,12 @@ public class CommunityManager : MonoBehaviour
         }
 
         animal.isRecruited = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(communityArea.position, communityRadius);
     }
 }

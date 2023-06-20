@@ -6,9 +6,11 @@ public class Animal : MonoBehaviour, IInteractable
 {
     [SerializeField] AnimalTypes animalType;
     [SerializeField] GameObject shelterPrefab;
+    [SerializeField] int shelterCost = 10;
     [SerializeField] protected float moveSpeed = 5;
 
     Camera cam;
+    protected Animator animator;
     protected CharacterController characterController;
     protected Vector3 moveDir = Vector3.zero;
     private bool isBuildingShelter;
@@ -32,6 +34,7 @@ public class Animal : MonoBehaviour, IInteractable
     {
         characterController = GetComponent<CharacterController>();
         cam = Camera.main;
+        animator = GetComponentInChildren<Animator>();
 
         defaultLayer = LayerMask.NameToLayer("Default");
         interactableLayer = LayerMask.NameToLayer("Interactable");
@@ -47,6 +50,8 @@ public class Animal : MonoBehaviour, IInteractable
 
             if (isBuildingShelter)
             {
+                animator?.SetBool("Running", false);
+
                 BuildShelter();
             }
             else if (InputManager.Instance.Move().magnitude > 0.1f)
@@ -54,6 +59,12 @@ public class Animal : MonoBehaviour, IInteractable
                 Move();
 
                 transform.forward = moveDir;
+
+                animator?.SetBool("Running", true);
+            }
+            else
+            {
+                animator?.SetBool("Running", false);
             }
         }
         else
@@ -88,6 +99,15 @@ public class Animal : MonoBehaviour, IInteractable
         if (isMoving)
         {
             characterController.SimpleMove(chosenDirection * moveSpeed);
+
+            animator?.SetBool("Running", true);
+        }
+        else
+        {
+            //Still use the move function so gravity gets applied
+            characterController.SimpleMove(chosenDirection * 0);
+
+            animator?.SetBool("Running", false);
         }
 
         elaspedMoveTime += Time.deltaTime;
@@ -124,7 +144,6 @@ public class Animal : MonoBehaviour, IInteractable
         if (Physics.Raycast(ray, out hit))
         {
             placeableShelter.transform.position = hit.point;
-            //placeableShelter.transform.rotation = Quaternion.Euler(placeableShelter.transform.rotation.eulerAngles.x, CommunityManager.Instance.ShelterCam.transform.rotation.eulerAngles.y, placeableShelter.transform.rotation.eulerAngles.z);
         }
 
         if (InputManager.Instance.RotateBuild() < 0)
@@ -137,10 +156,23 @@ public class Animal : MonoBehaviour, IInteractable
         }
 
         //Confirming Build
-        if (InputManager.Instance.Interact())
+        if (InputManager.Instance.Interact() && ResourceManager.woodPoints >= shelterCost && Vector3.Distance(placeableShelter.transform.position, CommunityManager.Instance.CommunityArea.position) <= CommunityManager.Instance.CommunityRadius)
         {
+            ResourceManager.woodPoints -= shelterCost;
+
             CommunityManager.Instance.shelters[animalType] += 1;
             CommunityManager.Instance.CancelBuild();
+        }
+        else if (InputManager.Instance.Interact())
+        {
+            if (ResourceManager.woodPoints < shelterCost)
+            {
+                print("Not enough wood to build shelter");
+            }
+            if (Vector3.Distance(placeableShelter.transform.position, CommunityManager.Instance.CommunityArea.position) > CommunityManager.Instance.CommunityRadius)
+            {
+                print("Cannot build shelter outside of community zone");
+            }
         }
     }
 

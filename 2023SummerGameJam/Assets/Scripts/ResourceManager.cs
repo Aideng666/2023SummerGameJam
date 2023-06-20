@@ -5,9 +5,11 @@ public static class ResourceManager
     [SerializeField] static GameObject[] fruit;
     [SerializeField] static GameObject[] wood;
 
+    public static int woodPoints = 0, fruitPoints = 0, waterPoints;
+
     //Spawn rate of each (Non-independant probability, i.e. if p=0.4, then 0.6 of all fruit will spawn)
     public static float fruitProb, woodProb;
-    public static void spawnResources(float fruitProb, float woodProb)
+    public static void limitResources(float fruitProb, float woodProb)
     {
         if (fruit == null)
             fruit = GameObject.FindGameObjectsWithTag("Fruit");
@@ -20,6 +22,7 @@ public static class ResourceManager
         foreach (GameObject fruit in fruitSpawn)
         {
             fruit.SetActive(false);
+            fruit.tag = "EmptyFruit";
             Fruit tempFruit = fruit.GetComponent<Fruit>();
             if (tempFruit) tempFruit.status = false;
         }
@@ -27,9 +30,49 @@ public static class ResourceManager
         foreach (GameObject wood in woodSpawn)
         {
             wood.SetActive(false);
+            wood.tag = "EmptyWood";
             Wood tempWood = wood.GetComponent<Wood>();
             if (tempWood) tempWood.status = false;
         }
+    }
+
+    public static void replenishResources(float percent)
+    {
+        GameObject[] emptyFruit = GameObject.FindGameObjectsWithTag("EmptyFruit");
+        GameObject[] emptyWood = GameObject.FindGameObjectsWithTag("EmptyWood");
+
+        GameObject[] fruitSpawn = SelectRandom(emptyFruit, percent);
+        GameObject[] woodSpawn = SelectRandom(emptyWood, percent);
+
+        foreach (GameObject fruit in fruitSpawn)
+        {
+            Fruit tempFruit = fruit.GetComponent<Fruit>();
+            tempFruit.replenish();
+        }
+
+        foreach (GameObject wood in woodSpawn)
+        {
+            Wood tempWood = wood.GetComponent<Wood>();
+            tempWood.replenish();
+        }
+    }
+
+    public static int addToWood(int amount)
+    {
+        woodPoints += amount;
+        return woodPoints;
+    }
+
+    public static int addToFood(int amount)
+    {
+        fruitPoints += amount;
+        return fruitPoints;
+    }
+
+    public static int addToWater(int amount)
+    {
+        waterPoints += amount;
+        return waterPoints;
     }
 
     static GameObject[] SelectRandom(GameObject[] objectList, float fraction)

@@ -29,11 +29,15 @@ public class WoodPecker : Animal
             if (flightActivated && characterController.isGrounded)
             {
                 flightActivated = false;
+
+                animator.SetBool("Flying", false);
             }
 
             if (!flightActivated && InputManager.Instance.Fly() > 0 && currentFlightStamina > 0)
             {
                 flightActivated = true;
+
+                animator.SetBool("Flying", true);
             }
 
             //Moves horiztonally based on if the bird is in flight or not

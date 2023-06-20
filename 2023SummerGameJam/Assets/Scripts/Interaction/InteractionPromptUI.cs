@@ -16,7 +16,8 @@ public class InteractionPromptUI : MonoBehaviour
 
     private void Start()
     {
-        _mainCam = Camera.main;
+        //_mainCam = Camera.main;
+        _mainCam = CommunityManager.Instance.MainCam;
         _uiPanelInteract.SetActive(false);
         playerInput = InputManager.Instance.GetPlayerInput();
         if (playerInput != null)
@@ -28,8 +29,11 @@ public class InteractionPromptUI : MonoBehaviour
 
     void LateUpdate()
     {
-        var rotation = _mainCam.transform.rotation;
-        transform.LookAt(transform.position + rotation * Vector3.forward, rotation * Vector3.up);
+        if (!GetComponentInParent<Animal>().IsBuildingShelter)
+        {
+            var rotation = _mainCam.transform.rotation;
+            transform.LookAt(transform.position + rotation * Vector3.forward, rotation * Vector3.up);
+        }
     }
 
     public bool isDisplayed = false;
