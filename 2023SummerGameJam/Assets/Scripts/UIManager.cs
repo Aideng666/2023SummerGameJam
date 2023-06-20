@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class UIManager : MonoBehaviour
@@ -12,6 +13,8 @@ public class UIManager : MonoBehaviour
     Sequence creditsCanvasTween;
     Sequence exitCanvasTween;
     float panelTweenTime = 0.8f;
+
+    [SerializeField] private Slider _slider;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,8 @@ public class UIManager : MonoBehaviour
         }
 
         ButtonAnim();
+
+        _slider.onValueChanged.AddListener(val => SoundManager.Instance.ChangeMasterVolume(val));
     }
 
     public void QuitGame()
