@@ -6,12 +6,10 @@ using TMPro;
 public class UIResourceManager : MonoBehaviour
 {
     int foodCount;
-    int waterCount;
     int materialCount;
     int population;
 
     [SerializeField] TMP_Text foodText;
-    [SerializeField] TMP_Text waterText;
     [SerializeField] TMP_Text materialText;
     [SerializeField] TMP_Text populationText;
 
@@ -22,7 +20,6 @@ public class UIResourceManager : MonoBehaviour
     void Start()
     {
         foodCount = 0;
-        waterCount = 0;
         materialCount = 0;
         population = 0;
     }
@@ -37,7 +34,6 @@ public class UIResourceManager : MonoBehaviour
         }
 
         foodText.text = foodCount.ToString();
-        waterText.text = waterCount.ToString();
         materialText.text = materialCount.ToString();
         populationText.text = population.ToString();
     }

@@ -11,6 +11,7 @@ public class ButtonAnimations : MonoBehaviour
         Tween buttonTween;
 
         buttonTween = button.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f).SetEase(Ease.InOutExpo);
+        AudioManager.Instance.Play("ButtonHover");
     }
 
     public void ButtonExit(GameObject button)
@@ -23,5 +24,6 @@ public class ButtonAnimations : MonoBehaviour
     public void ButtonClick(GameObject button)
     {
         button.transform.localScale = (new Vector3(1f, 1f, 1f));
+        AudioManager.Instance.Play("ButtonClick");
     }
 }

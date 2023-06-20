@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
 
         ButtonAnim();
 
-        _slider.onValueChanged.AddListener(val => SoundManager.Instance.ChangeMasterVolume(val));
+        _slider.onValueChanged.AddListener(val => AudioManager.Instance.ChangeMusicVolume(val));
     }
 
     public void QuitGame()

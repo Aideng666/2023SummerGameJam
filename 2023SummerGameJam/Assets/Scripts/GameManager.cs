@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        AudioManager.Instance.Stop("Theme");
+        AudioManager.Instance.Play("Synth");
     }
 
     public void UpdateCameraTarget()
