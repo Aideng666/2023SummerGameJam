@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         sequence = DOTween.Sequence();
         settingsCanvasTween = DOTween.Sequence();
         creditsCanvasTween = DOTween.Sequence();
