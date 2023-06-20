@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 644b2fa5444bbb04f9b7cf43a507e0f7
   - enabled: 1
-    path: Assets/Scenes/Main.unity
+    path: Assets/Polytope Studio/Lowpoly_Demos/Environment_Free/Environment_Free.unity
     guid: c732593fe76e5a84197f9cd13963f706
   m_configObjects: {}

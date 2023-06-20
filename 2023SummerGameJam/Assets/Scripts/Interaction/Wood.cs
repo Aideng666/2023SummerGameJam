@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Wood : MonoBehaviour, IInteractable
@@ -10,9 +8,28 @@ public class Wood : MonoBehaviour, IInteractable
     public bool Interact(Interactor player)
     {
         if (!CanInteract()) return false;
-        gameObject.SetActive(false);
+        
         Debug.Log("Collected " + woodPoints + " wood!");
+        ResourceManager.addToWood(woodPoints);
+
+        deplete();
         return true;
+    }
+
+    public void replenish()
+    {
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<Collider>().enabled = true;
+        gameObject.tag = "Wood";
+        status = true;
+    }
+
+    public void deplete()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+        gameObject.tag = "EmptyWood";
+        status = false;
     }
 
     public bool CanInteract()
