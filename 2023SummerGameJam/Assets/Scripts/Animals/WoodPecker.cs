@@ -23,7 +23,7 @@ public class WoodPecker : Animal
     {
         base.Update();
 
-        if (isActiveAnimal)
+        if (IsActiveAnimal)
         {
             //Detects if the bird is flying or not
             if (flightActivated && characterController.isGrounded)

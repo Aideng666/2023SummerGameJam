@@ -2170,7 +2170,7 @@ MonoBehaviour:
   virtualCam: {fileID: 1754272175}
   communityRadius: 20
   camMovespeed: 5
-  dayLength: 12
+  dayLength: 20
   activeAnimal: {fileID: 0}
 --- !u!1 &638334728
 GameObject:

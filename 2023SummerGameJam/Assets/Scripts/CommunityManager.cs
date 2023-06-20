@@ -52,7 +52,7 @@ public class CommunityManager : MonoBehaviour
         animalsInCommunity[0].Add(startingAnimal);
 
         activeAnimal = startingAnimal;
-        activeAnimal.isActiveAnimal = true;
+        activeAnimal.IsActiveAnimal = true;
         activeAnimal.isRecruited = true;
 
         shelterCam.enabled = false;
@@ -68,8 +68,8 @@ public class CommunityManager : MonoBehaviour
         if (elaspedDayTime >= dayLength)
         {
             elaspedDayTime = 0;
-            //GO TO NIGHT TIME EVENT
-            
+
+            NightTimeEvents.PickNightTimeEvent();
 
             ResourceManager.replenishResources(0.7f);
             dayNum++;
@@ -122,9 +122,9 @@ public class CommunityManager : MonoBehaviour
                     }
                 }
 
-                activeAnimal.isActiveAnimal = false;
+                activeAnimal.IsActiveAnimal = false;
                 activeAnimal = closestAnimal;
-                activeAnimal.isActiveAnimal = true;
+                activeAnimal.IsActiveAnimal = true;
 
                 GameManager.Instance.UpdateCameraTarget();
             }
@@ -143,9 +143,9 @@ public class CommunityManager : MonoBehaviour
                     }
                 }
 
-                activeAnimal.isActiveAnimal = false;
+                activeAnimal.IsActiveAnimal = false;
                 activeAnimal = closestAnimal;
-                activeAnimal.isActiveAnimal = true;
+                activeAnimal.IsActiveAnimal = true;
 
                 GameManager.Instance.UpdateCameraTarget();
             }
@@ -164,10 +164,10 @@ public class CommunityManager : MonoBehaviour
                     }
                 }
 
-                activeAnimal.isActiveAnimal = false;
+                activeAnimal.IsActiveAnimal = false;
                 activeAnimal = closestAnimal;
-                activeAnimal.isActiveAnimal = true;
-
+                activeAnimal.IsActiveAnimal = true;
+                    
                 GameManager.Instance.UpdateCameraTarget();
             }
         }
@@ -185,9 +185,9 @@ public class CommunityManager : MonoBehaviour
                     }
                 }
 
-                activeAnimal.isActiveAnimal = false;
+                activeAnimal.IsActiveAnimal = false;
                 activeAnimal = closestAnimal;
-                activeAnimal.isActiveAnimal = true;
+                activeAnimal.IsActiveAnimal = true;
 
                 GameManager.Instance.UpdateCameraTarget();
             }
@@ -195,9 +195,9 @@ public class CommunityManager : MonoBehaviour
     }
     public void SwapAnimals(Animal animal)
     {
-        activeAnimal.isActiveAnimal = false;
+        activeAnimal.IsActiveAnimal = false;
         activeAnimal = animal;
-        activeAnimal.isActiveAnimal = true;
+        activeAnimal.IsActiveAnimal = true;
 
         GameManager.Instance.UpdateCameraTarget();
     }
