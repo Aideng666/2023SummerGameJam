@@ -6,10 +6,11 @@ public class Animal : MonoBehaviour, IInteractable
 {
     [SerializeField] AnimalTypes animalType;
     [SerializeField] GameObject shelterPrefab;
+    [SerializeField] int shelterCost = 10;
     [SerializeField] protected float moveSpeed = 5;
 
     Camera cam;
-    Animator animator;
+    protected Animator animator;
     protected CharacterController characterController;
     protected Vector3 moveDir = Vector3.zero;
     private bool isBuildingShelter;
@@ -143,7 +144,6 @@ public class Animal : MonoBehaviour, IInteractable
         if (Physics.Raycast(ray, out hit))
         {
             placeableShelter.transform.position = hit.point;
-            //placeableShelter.transform.rotation = Quaternion.Euler(placeableShelter.transform.rotation.eulerAngles.x, CommunityManager.Instance.ShelterCam.transform.rotation.eulerAngles.y, placeableShelter.transform.rotation.eulerAngles.z);
         }
 
         if (InputManager.Instance.RotateBuild() < 0)
@@ -156,10 +156,23 @@ public class Animal : MonoBehaviour, IInteractable
         }
 
         //Confirming Build
-        if (InputManager.Instance.Interact())
+        if (InputManager.Instance.Interact() && ResourceManager.woodPoints >= shelterCost && Vector3.Distance(placeableShelter.transform.position, CommunityManager.Instance.CommunityArea.position) <= CommunityManager.Instance.CommunityRadius)
         {
+            ResourceManager.woodPoints -= shelterCost;
+
             CommunityManager.Instance.shelters[animalType] += 1;
             CommunityManager.Instance.CancelBuild();
+        }
+        else if (InputManager.Instance.Interact())
+        {
+            if (ResourceManager.woodPoints < shelterCost)
+            {
+                print("Not enough wood to build shelter");
+            }
+            if (Vector3.Distance(placeableShelter.transform.position, CommunityManager.Instance.CommunityArea.position) > CommunityManager.Instance.CommunityRadius)
+            {
+                print("Cannot build shelter outside of community zone");
+            }
         }
     }
 

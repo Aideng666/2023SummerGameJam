@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Fruit
   - Wood
+  - EmptyWood
+  - EmptyFruit
   layers:
   - Default
   - TransparentFX
