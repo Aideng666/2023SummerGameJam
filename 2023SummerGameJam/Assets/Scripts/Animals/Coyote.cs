@@ -20,11 +20,17 @@ public class Coyote : MonoBehaviour
 
     //For Chasing
     Animal animalToChase;
+    float chaseTimer = 5f;
+    float elaspedchaseTime = 0;
 
     //For Attacking
     float attackDuration = 1;
     float elaspedAttackTime = 0;
     bool isAttacking;
+
+    //For Idling
+    float idleTime = 3;
+    float elaspedIdleTime;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +77,7 @@ public class Coyote : MonoBehaviour
 
                     animalToChase = closestAnimal;
                     animator?.SetBool("Running", true);
+                    elaspedchaseTime = 0;
 
                     return;
                 }
@@ -120,7 +127,16 @@ public class Coyote : MonoBehaviour
                     return;
                 }
 
-                if (Vector3.Distance(animalToChase.transform.position, transform.position) <=  attackRange)
+                if (elaspedchaseTime >= chaseTimer)
+                {
+                    currentState = CoyoteStates.Idle;
+                    elaspedchaseTime = 0;
+                    animator.SetBool("Running", false);
+
+                    return;
+                }
+
+                if (Vector3.Distance(animalToChase.transform.position, transform.position) <= attackRange)
                 {
                     currentState = CoyoteStates.Attack;
                     animator.SetTrigger("Attack");
@@ -130,6 +146,8 @@ public class Coyote : MonoBehaviour
 
                     return;
                 }
+
+                elaspedchaseTime += Time.deltaTime;
 
                 break;
 
@@ -159,6 +177,23 @@ public class Coyote : MonoBehaviour
                 elaspedAttackTime += Time.deltaTime;
 
                 break;
+
+            case CoyoteStates.Idle:
+
+                characterController.SimpleMove(Vector3.zero);
+
+                if (elaspedIdleTime >= idleTime)
+                {
+                    elaspedIdleTime = 0;
+
+                    currentState = CoyoteStates.Wander;
+
+                    return;
+                }
+
+                elaspedIdleTime += Time.deltaTime;
+
+                break;
         }
     }
 }
@@ -167,6 +202,7 @@ public enum CoyoteStates
 {
     Wander,
     Chase,
-    Attack
+    Attack,
+    Idle
 }
 
