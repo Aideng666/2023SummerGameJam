@@ -1718,8 +1718,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 508.94006, y: -83.130066}
-  m_SizeDelta: {x: 1017.8843, y: 166.26404}
+  m_AnchoredPosition: {x: 648, y: -95}
+  m_SizeDelta: {x: 1243.8677, y: 166.264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &495809672
 MonoBehaviour:
@@ -1741,7 +1741,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NAME OF GAME
+  m_text: Backyard Builders
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 69ba4cd4600df5b4199bf01cb13252d7, type: 2}
   m_sharedMaterial: {fileID: -1981934168360032745, guid: 69ba4cd4600df5b4199bf01cb13252d7,
@@ -4145,7 +4145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NAME OF GAME
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 69ba4cd4600df5b4199bf01cb13252d7, type: 2}
   m_sharedMaterial: {fileID: -1981934168360032745, guid: 69ba4cd4600df5b4199bf01cb13252d7,
