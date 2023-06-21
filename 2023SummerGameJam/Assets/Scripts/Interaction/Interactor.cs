@@ -21,19 +21,35 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
-        if (_animal.isActiveAnimal)
+        if (_animal.IsActiveAnimal)
         {
             _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
 
             if (_numFound > 0)
             {
-                var _interactable = _colliders[0].GetComponent<IInteractable>();
+                int minIndex = 0, i = 0;
+                float MinDistance = Mathf.Infinity;
+                foreach (Collider _interact in _colliders)
+                {
+                    if (_interact != null)
+                    {
+                        float dist = Vector3.Distance(_interact.gameObject.transform.position, _interactionPoint.position);
+                        if (dist < MinDistance)
+                        {
+                            MinDistance = dist; minIndex = i;
+                            Debug.Log("Set interactable to collider " + i);
+                        }
+                        i++;
+                    }
+                }
+                var _interactable = _colliders[minIndex].GetComponent<IInteractable>();
+                
 
                 if (_interactable != null)
                 {
                     if (!_interactionPromptUI.isDisplayed && _interactable.CanInteract()) _interactionPromptUI.SetUpInteract();
-                    //TODO: Add curr animal check
-                    if (InputManager.Instance.Interact()) // && _animal.isCurrAnimal)
+
+                    if (InputManager.Instance.Interact())
                     {
                         _interactable.Interact(this);
                     }

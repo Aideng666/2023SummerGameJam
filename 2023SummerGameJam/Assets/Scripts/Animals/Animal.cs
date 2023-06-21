@@ -14,11 +14,13 @@ public class Animal : MonoBehaviour, IInteractable
     protected CharacterController characterController;
     protected Vector3 moveDir = Vector3.zero;
     private bool isBuildingShelter;
+    private bool isActiveAnimal;
 
     public GameObject placeableShelter { get; private set; }
-    public bool IsBuildingShelter { get { return isBuildingShelter; } set { isBuildingShelter = value; placeableShelter = Instantiate(shelterPrefab); } }
-    public bool isActiveAnimal { get; set; }
+    public bool IsBuildingShelter { get { return isBuildingShelter; } set { isBuildingShelter = value; if (value) placeableShelter = Instantiate(shelterPrefab); } }
+    public bool IsActiveAnimal { get { return isActiveAnimal;  } set { isActiveAnimal = value; if (!value) elaspedInteractionDelay = 0; } }
     public bool isRecruited { get; set; } = false;
+    public AnimalTypes AnimalType { get { return animalType; } }
 
     LayerMask defaultLayer;
     LayerMask interactableLayer;
@@ -28,6 +30,17 @@ public class Animal : MonoBehaviour, IInteractable
     float moveTime = 1f;
     float elaspedMoveTime = 0;
     bool isMoving = false;
+
+    //Interaction timer
+    float interactionDelay = 0.25f;
+    float elaspedInteractionDelay = 0f;
+
+
+    private void OnEnable()
+    {
+        isRecruited = false;
+        isActiveAnimal = false;
+    }
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -72,7 +85,10 @@ public class Animal : MonoBehaviour, IInteractable
             gameObject.layer = interactableLayer;
 
             AutoMove();
+
+            elaspedInteractionDelay += Time.deltaTime;
         }
+
     }
 
     void Move()
@@ -120,6 +136,8 @@ public class Animal : MonoBehaviour, IInteractable
             return false;
         }
 
+        print("Interacting");
+
         if (!isRecruited && CommunityManager.Instance.shelters[animalType] >= CommunityManager.Instance.animalsInCommunity[(int)animalType].Count)
         {
             CommunityManager.Instance.RecruitAnimal(this, animalType);
@@ -130,6 +148,7 @@ public class Animal : MonoBehaviour, IInteractable
         }
         else
         {
+            print("Swapping");
             CommunityManager.Instance.SwapAnimals(this);
         }
 
@@ -160,6 +179,8 @@ public class Animal : MonoBehaviour, IInteractable
         {
             ResourceManager.woodPoints -= shelterCost;
 
+            placeableShelter.GetComponent<Shelter>().ShelterType = animalType;
+
             CommunityManager.Instance.shelters[animalType] += 1;
             CommunityManager.Instance.CancelBuild();
         }
@@ -176,9 +197,34 @@ public class Animal : MonoBehaviour, IInteractable
         }
     }
 
+    public void Die()
+    {
+        if (IsActiveAnimal)
+        {
+            foreach (Animal animal in FindObjectsOfType<Animal>())
+            {
+                if (!animal.IsActiveAnimal && animal.isRecruited)
+                {
+                    CommunityManager.Instance.SwapAnimals(animal);
+
+                    break;
+                }
+            }
+        }
+
+        AnimalPool.Instance.AddAnimaltoPool(gameObject, AnimalType);
+
+        CommunityManager.Instance.animalsInCommunity[(int)AnimalType].RemoveAt(0);
+    }
+
     public bool CanInteract()
     {
-        return true;
+        if (elaspedInteractionDelay > interactionDelay)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
 
