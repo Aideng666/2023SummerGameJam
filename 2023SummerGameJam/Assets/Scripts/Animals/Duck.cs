@@ -21,7 +21,7 @@ public class Duck : Animal
     {
         base.Update();
 
-        if (isActiveAnimal)
+        if (IsActiveAnimal)
         {
             characterController.SimpleMove(moveDir * moveSpeed);
 

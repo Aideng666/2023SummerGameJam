@@ -20,7 +20,7 @@ public class Squirrel : Animal
         {
             TouchingWall = false;
         }
-        if (isActiveAnimal)
+        if (IsActiveAnimal)
         {
             characterController.SimpleMove(moveDir * moveSpeed);
         }

@@ -21,7 +21,7 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
-        if (_animal.isActiveAnimal)
+        if (_animal.IsActiveAnimal)
         {
             _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
 
@@ -48,8 +48,8 @@ public class Interactor : MonoBehaviour
                 if (_interactable != null)
                 {
                     if (!_interactionPromptUI.isDisplayed && _interactable.CanInteract()) _interactionPromptUI.SetUpInteract();
-                    //TODO: Add curr animal check
-                    if (InputManager.Instance.Interact()) // && _animal.isCurrAnimal)
+
+                    if (InputManager.Instance.Interact())
                     {
                         _interactable.Interact(this);
                     }
