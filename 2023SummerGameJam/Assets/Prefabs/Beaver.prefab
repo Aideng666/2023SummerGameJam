@@ -73,6 +73,7 @@ MonoBehaviour:
     type: 3}
   shelterCost: 10
   moveSpeed: 5
+  canSwim: 1
 --- !u!114 &-3565036798644555316
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,9 +13,4 @@ public class Beaver : Animal
             characterController.SimpleMove(moveDir * moveSpeed);
         }
     }
-
-    void Swim()
-    {
-
-    }
 }

@@ -9,6 +9,7 @@ TagManager:
   - EmptyWood
   - EmptyFruit
   - Shelter
+  - Water
   layers:
   - Default
   - TransparentFX
