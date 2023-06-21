@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        AudioManager.Instance.Stop("Theme");
-        AudioManager.Instance.Play("Synth");
+        AudioManager.Instance.Stop("MainTheme");
+        AudioManager.Instance.Play("DayTheme");
     }
 
     public void UpdateCameraTarget()
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
     {
         isPaused = false;    
         pauseCanvas.SetActive(false);
-        AudioManager.Instance.Stop("Synth");
-        AudioManager.Instance.Play("Theme");
+        AudioManager.Instance.Stop("DayTheme");
+        AudioManager.Instance.Play("MainTheme");
     }
 }

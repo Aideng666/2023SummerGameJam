@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Theme
-    _clip: {fileID: 8300000, guid: c52a5c3666a40ee49a12887f084f7dc0, type: 3}
+  - name: MainTheme
+    _clip: {fileID: 8300000, guid: d2aaad13cad7af944951aec0c3fd984c, type: 3}
     _volume: 0.5
     _pitch: 1
     _loop: 1
@@ -57,8 +57,14 @@ MonoBehaviour:
     _pitch: 1
     _loop: 0
     source: {fileID: 0}
-  - name: Synth
-    _clip: {fileID: 8300000, guid: 5b6a3b250b540984abb62c983190a842, type: 3}
+  - name: DayTheme
+    _clip: {fileID: 8300000, guid: 3aebc0b919757584baaa781776357d15, type: 3}
+    _volume: 0.5
+    _pitch: 1
+    _loop: 1
+    source: {fileID: 0}
+  - name: NightTheme
+    _clip: {fileID: 8300000, guid: b6043012074e5c6488794334ebb44161, type: 3}
     _volume: 0.5
     _pitch: 1
     _loop: 1
