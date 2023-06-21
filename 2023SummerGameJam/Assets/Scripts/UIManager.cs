@@ -14,11 +14,12 @@ public class UIManager : MonoBehaviour
     Sequence exitCanvasTween;
     float panelTweenTime = 0.8f;
 
-    [SerializeField] private Slider _slider;
-
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         sequence = DOTween.Sequence();
         settingsCanvasTween = DOTween.Sequence();
         creditsCanvasTween = DOTween.Sequence();
@@ -30,8 +31,6 @@ public class UIManager : MonoBehaviour
         }
 
         ButtonAnim();
-
-        _slider.onValueChanged.AddListener(val => SoundManager.Instance.ChangeMasterVolume(val));
     }
 
     public void QuitGame()

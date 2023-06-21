@@ -23,5 +23,6 @@ public class ButtonAnimations : MonoBehaviour
     public void ButtonClick(GameObject button)
     {
         button.transform.localScale = (new Vector3(1f, 1f, 1f));
+        AudioManager.Instance.Play("ButtonClick");
     }
 }
