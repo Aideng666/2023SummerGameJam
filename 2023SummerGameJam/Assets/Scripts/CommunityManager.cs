@@ -287,7 +287,7 @@ public class CommunityManager : MonoBehaviour
 
                 break;
         }
-
+        ResourceManager.addToPop(1);
         animal.isRecruited = true;
     }
 

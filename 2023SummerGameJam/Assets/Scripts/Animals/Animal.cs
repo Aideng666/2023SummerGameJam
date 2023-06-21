@@ -182,6 +182,7 @@ public class Animal : MonoBehaviour, IInteractable
 
             placeableShelter.GetComponent<Shelter>().ShelterType = animalType;
 
+            placeableShelter.transform.GetChild(0).gameObject.SetActive(false);
             CommunityManager.Instance.shelters[animalType] += 1;
             CommunityManager.Instance.CancelBuild();
         }
@@ -216,6 +217,8 @@ public class Animal : MonoBehaviour, IInteractable
         AnimalPool.Instance.AddAnimaltoPool(gameObject, AnimalType);
 
         CommunityManager.Instance.animalsInCommunity[(int)AnimalType].RemoveAt(0);
+
+        ResourceManager.addToPop(-1);
     }
 
     public bool CanInteract()

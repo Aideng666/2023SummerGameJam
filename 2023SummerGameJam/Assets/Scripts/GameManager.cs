@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public float worldGravity = 10;
     [SerializeField] CinemachineVirtualCamera cam;
     [SerializeField] GameObject pauseCanvas;
-    private static bool isPaused = false;
+    public static bool isPaused = false;
 
     public static GameManager Instance { get; private set; }
 
