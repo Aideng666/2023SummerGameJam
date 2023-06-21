@@ -20,7 +20,7 @@ public class Fruit : MonoBehaviour, IInteractable
     {
         if (!status)
         {
-            GetComponent<MeshRenderer>().enabled = true;
+            GetComponentInChildren<MeshRenderer>().enabled = true;
             GetComponent<Collider>().enabled = true;
             gameObject.tag = "Fruit";
             status = true;
@@ -31,7 +31,7 @@ public class Fruit : MonoBehaviour, IInteractable
     {
         if (status)
         {
-            GetComponent<MeshRenderer>().enabled = false;
+            GetComponentInChildren<MeshRenderer>().enabled = false;
             GetComponent<Collider>().enabled = false;
             gameObject.tag = "EmptyFruit";
             status = false;
