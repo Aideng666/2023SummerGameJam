@@ -19,12 +19,12 @@ public class CommunityManager : MonoBehaviour
     float elaspedDayTime = 0;
 
     public float dayNum { get; private set; } = 0;
-
     public float DayLength { get { return dayLength; } }
     public Camera ShelterCam { get { return shelterCam; } }
     public Camera MainCam { get { return mainCam; } }
     public Transform CommunityArea { get { return communityArea; } }
     public float CommunityRadius { get { return communityRadius; } }
+    public int totalAnimalsInCommunity { get { return animalsInCommunity[0].Count + animalsInCommunity[1].Count + animalsInCommunity[2].Count + animalsInCommunity[3].Count; } }
 
     //0 = Squirrel
     //1 = Woodpecker
@@ -65,6 +65,13 @@ public class CommunityManager : MonoBehaviour
 
     private void Update()
     {
+        //Lose Condition
+        if (totalAnimalsInCommunity <= 0)
+        {
+            //YOU LOSE
+        }
+
+        //Switching Days
         if (elaspedDayTime >= dayLength)
         {
             elaspedDayTime = 0;
@@ -72,6 +79,8 @@ public class CommunityManager : MonoBehaviour
             NightTimeEvents.PickNightTimeEvent();
 
             ResourceManager.replenishResources(0.7f);
+            DepleteFood();
+
             dayNum++;
         }
 
@@ -103,6 +112,46 @@ public class CommunityManager : MonoBehaviour
         }
 
         elaspedDayTime += Time.deltaTime;
+    }
+    void DepleteFood()
+    {
+        ResourceManager.fruitPoints -= 2 * totalAnimalsInCommunity;
+
+        if (ResourceManager.fruitPoints < 0)
+        {
+            int numAnimalsStarved = ResourceManager.fruitPoints / -2;
+
+            for (int i = 0; i < numAnimalsStarved; i++)
+            {
+                int animalChoice = Random.Range(0, 4);
+
+                if (animalsInCommunity[animalChoice].Count > 0)
+                {
+                    Animal killedAnimal = animalsInCommunity[animalChoice][0];
+
+                    if (killedAnimal.IsActiveAnimal)
+                    {
+                        foreach (Animal animal in FindObjectsOfType<Animal>())
+                        {
+                            if (!animal.IsActiveAnimal && animal.isRecruited)
+                            {
+                                SwapAnimals(animal);
+
+                                break;
+                            }
+                        }
+                    }
+
+                    AnimalPool.Instance.AddAnimaltoPool(killedAnimal.gameObject, killedAnimal.AnimalType);
+
+                    animalsInCommunity[animalChoice].RemoveAt(0);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+        }
     }
 
     void SwapAnimals()
