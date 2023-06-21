@@ -8,6 +8,7 @@ public class Animal : MonoBehaviour, IInteractable
     [SerializeField] GameObject shelterPrefab;
     [SerializeField] int shelterCost = 10;
     [SerializeField] protected float moveSpeed = 5;
+    [SerializeField] protected bool canSwim;
 
     Camera cam;
     protected Animator animator;
@@ -225,6 +226,14 @@ public class Animal : MonoBehaviour, IInteractable
         }
 
         return false;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (!canSwim && hit.gameObject.CompareTag("Water"))
+        {
+            transform.position = CommunityManager.Instance.CommunityArea.position;
+        }
     }
 }
 

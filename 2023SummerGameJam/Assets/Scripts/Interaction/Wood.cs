@@ -18,7 +18,7 @@ public class Wood : MonoBehaviour, IInteractable
 
     public void replenish()
     {
-        GetComponent<MeshRenderer>().enabled = true;
+        GetComponentInChildren<MeshRenderer>().enabled = true;
         GetComponent<Collider>().enabled = true;
         gameObject.tag = "Wood";
         status = true;
@@ -26,7 +26,7 @@ public class Wood : MonoBehaviour, IInteractable
 
     public void deplete()
     {
-        GetComponent<MeshRenderer>().enabled = false;
+        GetComponentInChildren<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
         gameObject.tag = "EmptyWood";
         status = false;
