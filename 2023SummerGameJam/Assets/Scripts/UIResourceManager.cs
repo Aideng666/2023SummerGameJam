@@ -41,9 +41,13 @@ public class UIResourceManager : MonoBehaviour
     {
         addResourceUI(popInstance, amount);
     }
-    private void addResourceUI(GameObject textSpawn, int amount) 
+    private void addResourceUI(GameObject textSpawn, int amount)
     {
-        string textToDisplay = "+" + amount.ToString();
+        string textToDisplay;
+        if (amount == 0) return;
+        else if (amount > 0) textToDisplay = "+" + amount.ToString();
+        else textToDisplay = "-" + amount.ToString();
+
         GameObject amountTextInstance = Instantiate(amountTextPrefab, textSpawn.transform);
         amountTextInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText(textToDisplay);
     }
