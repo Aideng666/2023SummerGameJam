@@ -5,10 +5,24 @@ public static class ResourceManager
     [SerializeField] static GameObject[] fruit;
     [SerializeField] static GameObject[] wood;
 
-    public static int woodPoints = 0, fruitPoints = 0, waterPoints;
+    public static int woodPoints = 0, fruitPoints = 0;
 
     //Spawn rate of each (Non-independant probability, i.e. if p=0.4, then 0.6 of all fruit will spawn)
     public static float fruitProb, woodProb;
+
+    static UIResourceManager UIResource;
+    public static UIResourceManager Instance
+    {
+        get
+        {
+            if (UIResource == null)
+            {
+                // create or find object
+                UIResource = GameObject.FindObjectOfType<UIResourceManager>();
+            }
+            return UIResource;
+        }
+    }
     public static void limitResources(float fruitProb, float woodProb)
     {
         if (fruit == null)
@@ -60,20 +74,17 @@ public static class ResourceManager
     public static int addToWood(int amount)
     {
         woodPoints += amount;
+        Instance.addWoodUI(amount);
         return woodPoints;
     }
 
     public static int addToFood(int amount)
     {
         fruitPoints += amount;
+        Instance.addFoodUI(amount);
         return fruitPoints;
     }
 
-    public static int addToWater(int amount)
-    {
-        waterPoints += amount;
-        return waterPoints;
-    }
 
     static GameObject[] SelectRandom(GameObject[] objectList, float fraction)
     {
