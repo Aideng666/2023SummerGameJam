@@ -68,6 +68,7 @@ public class CommunityManager : MonoBehaviour
         //Lose Condition
         if (totalAnimalsInCommunity <= 0)
         {
+            print("You Loser");
             //YOU LOSE
         }
 
@@ -115,8 +116,11 @@ public class CommunityManager : MonoBehaviour
     }
     void DepleteFood()
     {
+        print($"Your animals ate {2 * totalAnimalsInCommunity} food during the night");
+
         ResourceManager.fruitPoints -= 2 * totalAnimalsInCommunity;
 
+        //If food ran out, animals will starve
         if (ResourceManager.fruitPoints < 0)
         {
             int numAnimalsStarved = ResourceManager.fruitPoints / -2;
@@ -129,28 +133,15 @@ public class CommunityManager : MonoBehaviour
                 {
                     Animal killedAnimal = animalsInCommunity[animalChoice][0];
 
-                    if (killedAnimal.IsActiveAnimal)
-                    {
-                        foreach (Animal animal in FindObjectsOfType<Animal>())
-                        {
-                            if (!animal.IsActiveAnimal && animal.isRecruited)
-                            {
-                                SwapAnimals(animal);
-
-                                break;
-                            }
-                        }
-                    }
-
-                    AnimalPool.Instance.AddAnimaltoPool(killedAnimal.gameObject, killedAnimal.AnimalType);
-
-                    animalsInCommunity[animalChoice].RemoveAt(0);
+                    killedAnimal.Die();
                 }
                 else
                 {
                     i--;
                 }
             }
+
+            ResourceManager.fruitPoints = 0;
         }
     }
 

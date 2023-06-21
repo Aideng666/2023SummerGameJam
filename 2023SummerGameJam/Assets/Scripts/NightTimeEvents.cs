@@ -61,22 +61,7 @@ public static class NightTimeEvents
             {
                 Animal killedAnimal = CommunityManager.Instance.animalsInCommunity[animalChoice][0];
 
-                if (killedAnimal.IsActiveAnimal)
-                {
-                    foreach (Animal animal in GameObject.FindObjectsOfType<Animal>())
-                    {
-                        if (!animal.IsActiveAnimal && animal.isRecruited)
-                        {
-                            CommunityManager.Instance.SwapAnimals(animal);
-
-                            break;
-                        }
-                    }
-                }
-
-                AnimalPool.Instance.AddAnimaltoPool(killedAnimal.gameObject, killedAnimal.AnimalType);
-
-                CommunityManager.Instance.animalsInCommunity[animalChoice].RemoveAt(0);
+                killedAnimal.Die();
             }
             else
             {

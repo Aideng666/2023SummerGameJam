@@ -197,6 +197,26 @@ public class Animal : MonoBehaviour, IInteractable
         }
     }
 
+    public void Die()
+    {
+        if (IsActiveAnimal)
+        {
+            foreach (Animal animal in FindObjectsOfType<Animal>())
+            {
+                if (!animal.IsActiveAnimal && animal.isRecruited)
+                {
+                    CommunityManager.Instance.SwapAnimals(animal);
+
+                    break;
+                }
+            }
+        }
+
+        AnimalPool.Instance.AddAnimaltoPool(gameObject, AnimalType);
+
+        CommunityManager.Instance.animalsInCommunity[(int)AnimalType].RemoveAt(0);
+    }
+
     public bool CanInteract()
     {
         if (elaspedInteractionDelay > interactionDelay)
