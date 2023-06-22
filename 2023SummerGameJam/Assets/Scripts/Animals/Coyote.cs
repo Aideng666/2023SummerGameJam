@@ -7,10 +7,12 @@ public class Coyote : MonoBehaviour
     [SerializeField] float animalSightRadius = 8f;
     [SerializeField] float attackRange = 2;
     [SerializeField] float moveSpeed = 5;
+    [SerializeField] float lifeDuration = 60;
 
     CharacterController characterController;
     Animator animator;
     CoyoteStates currentState = CoyoteStates.Wander;
+    float elaspedLife = 0;
 
     //For Wandering
     Vector3 chosenDirection = Vector3.zero;
@@ -37,6 +39,7 @@ public class Coyote : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        elaspedLife = 0;
     }
 
     // Update is called once per frame
@@ -45,6 +48,11 @@ public class Coyote : MonoBehaviour
         //Choose current state
         Collider[] collidersHit; 
         List<Animal> animalsInView = new List<Animal>();
+
+        if (elaspedLife > lifeDuration)
+        {
+            Destroy(gameObject);
+        }
 
         //Apply current state
         switch (currentState)
@@ -195,6 +203,8 @@ public class Coyote : MonoBehaviour
 
                 break;
         }
+
+        elaspedLife += Time.deltaTime;
     }
 }
 

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimalSpawner : MonoBehaviour
+public class CoyoteSpawner : MonoBehaviour
 {
-    [SerializeField] float maxAnimalsPerDay = 3;
+    [SerializeField] float maxAnimalsPerDay = 1;
+    [SerializeField] GameObject coyotePrefab;
 
     float animalSpawnTimer;
     float elaspedSpawnTime;
@@ -19,9 +20,9 @@ public class AnimalSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (elaspedSpawnTime >= animalSpawnTimer) 
+        if (elaspedSpawnTime >= animalSpawnTimer)
         {
-            AnimalPool.Instance.SpawnAnimal((AnimalTypes)Random.Range(0, 4), transform.position + (Vector3.left * Random.Range(-5f, 5f)) + (Vector3.forward * Random.Range(-5f, 5f)));
+            Instantiate(coyotePrefab, transform.position + (Vector3.left * Random.Range(-5f, 5f)) + (Vector3.forward * Random.Range(-5f, 5f)), Quaternion.identity, AnimalPool.Instance.transform);
 
             elaspedSpawnTime = 0;
         }
