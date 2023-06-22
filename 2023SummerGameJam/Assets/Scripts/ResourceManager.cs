@@ -5,7 +5,7 @@ public static class ResourceManager
     [SerializeField] static GameObject[] fruit;
     [SerializeField] static GameObject[] wood;
 
-    public static int woodPoints = 0, fruitPoints = 0;
+    public static int woodPoints = 0, fruitPoints = 0, population = 1;
 
     //Spawn rate of each (Non-independant probability, i.e. if p=0.4, then 0.6 of all fruit will spawn)
     public static float fruitProb, woodProb;
@@ -82,6 +82,13 @@ public static class ResourceManager
     {
         fruitPoints += amount;
         Instance.addFoodUI(amount);
+        return fruitPoints;
+    }
+
+    public static int addToPop(int amount)
+    {
+        population += amount;
+        Instance.addPopUI(amount);
         return fruitPoints;
     }
 

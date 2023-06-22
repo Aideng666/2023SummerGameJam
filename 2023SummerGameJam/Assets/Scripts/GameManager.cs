@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public float worldGravity = 10;
     [SerializeField] CinemachineFreeLook cam;
     [SerializeField] GameObject pauseCanvas;
+    [SerializeField] GameObject mainMenuCanvas;
     private static bool isPaused = false;
 
     public static GameManager Instance { get; private set; }
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         isPaused = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        mainMenuCanvas.SetActive(false);
         pauseCanvas.SetActive(true);
     }
 
@@ -71,12 +73,13 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        mainMenuCanvas.SetActive(true);
         pauseCanvas.SetActive(false);
     }
 
     public void QuitGame()
     {
-        isPaused = false;    
+        isPaused = false;
         pauseCanvas.SetActive(false);
         AudioManager.Instance.Stop("DayTheme");
         AudioManager.Instance.Play("MainTheme");
