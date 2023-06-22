@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622d3ff30c9dcc447838c1426d1e3dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  woodPoints: 10
+  woodPoints: 3
   status: 1
 --- !u!54 &-5066015512221987536
 Rigidbody:
