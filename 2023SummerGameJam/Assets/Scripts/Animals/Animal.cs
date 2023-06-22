@@ -161,6 +161,8 @@ public class Animal : MonoBehaviour, IInteractable
         Ray ray = new Ray(CommunityManager.Instance.ShelterCam.transform.position, CommunityManager.Instance.ShelterCam.transform.forward);
         RaycastHit hit;
 
+        CommunityManager.Instance.buildUI.Activate(shelterCost);
+
         if (Physics.Raycast(ray, out hit))
         {
             placeableShelter.transform.position = hit.point;
