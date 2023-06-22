@@ -161,6 +161,8 @@ public class Animal : MonoBehaviour, IInteractable
         Ray ray = new Ray(CommunityManager.Instance.ShelterCam.transform.position, CommunityManager.Instance.ShelterCam.transform.forward);
         RaycastHit hit;
 
+        CommunityManager.Instance.buildUI.Activate(shelterCost);
+
         if (Physics.Raycast(ray, out hit))
         {
             placeableShelter.transform.position = hit.point;
@@ -182,6 +184,7 @@ public class Animal : MonoBehaviour, IInteractable
 
             placeableShelter.GetComponent<Shelter>().ShelterType = animalType;
 
+            placeableShelter.transform.GetChild(0).gameObject.SetActive(false);
             CommunityManager.Instance.shelters[animalType] += 1;
             CommunityManager.Instance.CancelBuild();
         }
@@ -216,6 +219,8 @@ public class Animal : MonoBehaviour, IInteractable
         AnimalPool.Instance.AddAnimaltoPool(gameObject, AnimalType);
 
         CommunityManager.Instance.animalsInCommunity[(int)AnimalType].RemoveAt(0);
+
+        ResourceManager.addToPop(-1);
     }
 
     public bool CanInteract()
@@ -228,11 +233,16 @@ public class Animal : MonoBehaviour, IInteractable
         return false;
     }
 
+    public void TeleportHome()
+    {
+        transform.position = CommunityManager.Instance.CommunityArea.position;
+    }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (!canSwim && hit.gameObject.CompareTag("Water"))
         {
-            transform.position = CommunityManager.Instance.CommunityArea.position;
+            TeleportHome();
         }
     }
 }

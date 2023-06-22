@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CommunityManager : MonoBehaviour
@@ -13,11 +14,14 @@ public class CommunityManager : MonoBehaviour
     [SerializeField] float communityRadius = 20;
     [SerializeField] float camMovespeed = 5;
     [SerializeField] float dayLength = 300f; // in seconds
+    [SerializeField] TextMeshPro dayCounter;
+    [SerializeField] public BuildUI buildUI;
     [HideInInspector] public Animal activeAnimal;
 
     Vector3 startShelterCamPos;
     float elaspedDayTime = 0;
 
+    public bool backHomeForMorning { get; set; }
     public float dayNum { get; private set; } = 0;
     public float DayLength { get { return dayLength; } }
     public Camera ShelterCam { get { return shelterCam; } }
@@ -75,6 +79,8 @@ public class CommunityManager : MonoBehaviour
         //Switching Days
         if (elaspedDayTime >= dayLength)
         {
+            backHomeForMorning = false;
+
             elaspedDayTime = 0;
 
             NightTimeEvents.PickNightTimeEvent();
@@ -83,6 +89,7 @@ public class CommunityManager : MonoBehaviour
             DepleteFood();
 
             dayNum++;
+            dayCounter.SetText(dayNum.ToString());
         }
 
         if (!activeAnimal.IsBuildingShelter)
@@ -255,6 +262,7 @@ public class CommunityManager : MonoBehaviour
             activeAnimal.IsBuildingShelter = false;
             shelterCam.transform.position = startShelterCamPos;
             virtualCam.enabled = true;
+            buildUI.Deactivate();
             SwapCamera();
         }
     }
@@ -287,7 +295,7 @@ public class CommunityManager : MonoBehaviour
 
                 break;
         }
-
+        ResourceManager.addToPop(1);
         animal.isRecruited = true;
     }
 
