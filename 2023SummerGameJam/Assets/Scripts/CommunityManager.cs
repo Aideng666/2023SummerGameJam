@@ -89,7 +89,7 @@ public class CommunityManager : MonoBehaviour
             DepleteFood();
 
             dayNum++;
-            dayCounter.SetText(dayNum.ToString());
+            dayCounter.SetText((dayNum + 1).ToString());
         }
 
         if (!activeAnimal.IsBuildingShelter)
