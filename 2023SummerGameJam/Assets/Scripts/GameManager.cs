@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float worldGravity = 10;
-    [SerializeField] CinemachineVirtualCamera cam;
+    [SerializeField] CinemachineFreeLook cam;
     [SerializeField] GameObject pauseCanvas;
     private static bool isPaused = false;
 

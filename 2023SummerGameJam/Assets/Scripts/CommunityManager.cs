@@ -9,7 +9,7 @@ public class CommunityManager : MonoBehaviour
     [SerializeField] Animal startingAnimal;
     [SerializeField] Camera mainCam;
     [SerializeField] Camera shelterCam;
-    [SerializeField] CinemachineVirtualCamera virtualCam;
+    [SerializeField] CinemachineFreeLook virtualCam;
     [SerializeField] float communityRadius = 20;
     [SerializeField] float camMovespeed = 5;
     [SerializeField] float dayLength = 300f; // in seconds
