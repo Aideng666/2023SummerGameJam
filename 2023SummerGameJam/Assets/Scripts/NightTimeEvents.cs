@@ -68,8 +68,8 @@ public static class NightTimeEvents
                 i--;
             }
         }
-
-        Debug.Log($"Coyotes attacked your community! You lost {numKilledAnimals} animals!");
+        AlertSystem.Instance.CreateAlert($"Coyotes attacked your community! You lost {numKilledAnimals} animals!");
+        //Debug.Log($"Coyotes attacked your community! You lost {numKilledAnimals} animals!");
     }
 
     static void FoodRaidEvent()
@@ -79,8 +79,8 @@ public static class NightTimeEvents
         int amountOfFoodStolen = (int)(percentFoodToSteal * ResourceManager.fruitPoints);
 
         ResourceManager.addToFood(-amountOfFoodStolen);
-
-        Debug.Log($"Owls have raided your food storage! You lost {amountOfFoodStolen} food");
+        AlertSystem.Instance.CreateAlert($"Owls have raided your food storage! You lost {amountOfFoodStolen} food");
+        //Debug.Log($"Owls have raided your food storage! You lost {amountOfFoodStolen} food");
     }
 
     static void BadWeatherEvent()
@@ -104,12 +104,13 @@ public static class NightTimeEvents
                 }
             }
         }
-
-        Debug.Log($"A bad storm occured! {numSheltersDestroyed} of your shelters have been destroyed!");
+        AlertSystem.Instance.CreateAlert($"A bad storm occured! {numSheltersDestroyed} of your shelters have been destroyed!");
+        //Debug.Log($"A bad storm occured! {numSheltersDestroyed} of your shelters have been destroyed!");
     }
 
     static void LuckyNight()
     {
-        Debug.Log("Nothing bad happened overnight!");
+        AlertSystem.Instance.CreateAlert("Nothing bad happened overnight!");
+        //Debug.Log("Nothing bad happened overnight!");
     }
 }

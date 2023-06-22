@@ -146,6 +146,7 @@ public class Animal : MonoBehaviour, IInteractable
         else if (!isRecruited)
         {
             print($"Not Enough Shelters to recruit this animal, build more {animalType} shelters first");
+            AlertSystem.Instance.CreateAlert("Not Enough Shelters to recruit this animal");
         }
         else
         {
