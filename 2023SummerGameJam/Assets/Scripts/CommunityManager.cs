@@ -14,7 +14,7 @@ public class CommunityManager : MonoBehaviour
     [SerializeField] float communityRadius = 20;
     [SerializeField] float camMovespeed = 5;
     [SerializeField] float dayLength = 300f; // in seconds
-    [SerializeField] TextMeshPro dayCounter;
+    [SerializeField] TextMeshProUGUI dayCounter;
     [SerializeField] public BuildUI buildUI;
     [HideInInspector] public Animal activeAnimal;
 
