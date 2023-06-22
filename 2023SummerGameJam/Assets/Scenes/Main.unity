@@ -2543,6 +2543,7 @@ MonoBehaviour:
   worldGravity: 5
   cam: {fileID: 687333285}
   pauseCanvas: {fileID: 1441177705}
+  mainMenuCanvas: {fileID: 1476910513}
 --- !u!114 &571553243
 MonoBehaviour:
   m_ObjectHideFlags: 0
