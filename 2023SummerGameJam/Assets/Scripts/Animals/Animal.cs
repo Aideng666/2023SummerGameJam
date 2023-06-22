@@ -228,11 +228,16 @@ public class Animal : MonoBehaviour, IInteractable
         return false;
     }
 
+    public void TeleportHome()
+    {
+        transform.position = CommunityManager.Instance.CommunityArea.position;
+    }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (!canSwim && hit.gameObject.CompareTag("Water"))
         {
-            transform.position = CommunityManager.Instance.CommunityArea.position;
+            TeleportHome();
         }
     }
 }

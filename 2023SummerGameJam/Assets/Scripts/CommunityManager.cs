@@ -18,6 +18,7 @@ public class CommunityManager : MonoBehaviour
     Vector3 startShelterCamPos;
     float elaspedDayTime = 0;
 
+    public bool backHomeForMorning { get; set; }
     public float dayNum { get; private set; } = 0;
     public float DayLength { get { return dayLength; } }
     public Camera ShelterCam { get { return shelterCam; } }
@@ -75,6 +76,8 @@ public class CommunityManager : MonoBehaviour
         //Switching Days
         if (elaspedDayTime >= dayLength)
         {
+            backHomeForMorning = false;
+
             elaspedDayTime = 0;
 
             NightTimeEvents.PickNightTimeEvent();

@@ -37,7 +37,6 @@ public class Interactor : MonoBehaviour
                         if (dist < MinDistance)
                         {
                             MinDistance = dist; minIndex = i;
-                            Debug.Log("Set interactable to collider " + i);
                         }
                         i++;
                     }
