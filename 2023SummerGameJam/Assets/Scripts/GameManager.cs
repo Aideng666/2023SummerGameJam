@@ -83,5 +83,6 @@ public class GameManager : MonoBehaviour
         pauseCanvas.SetActive(false);
         AudioManager.Instance.Stop("DayTheme");
         AudioManager.Instance.Play("MainTheme");
+        ResourceManager.ResetResources();
     }
 }
