@@ -78,7 +78,7 @@ public static class NightTimeEvents
 
         int amountOfFoodStolen = (int)(percentFoodToSteal * ResourceManager.fruitPoints);
 
-        ResourceManager.fruitPoints -= amountOfFoodStolen;
+        ResourceManager.addToFood(-amountOfFoodStolen);
 
         Debug.Log($"Owls have raided your food storage! You lost {amountOfFoodStolen} food");
     }

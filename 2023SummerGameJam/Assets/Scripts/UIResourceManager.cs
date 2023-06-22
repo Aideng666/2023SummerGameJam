@@ -4,7 +4,6 @@ using static ResourceManager;
 
 public class UIResourceManager : MonoBehaviour
 {
-    int population;
 
     [SerializeField] TMP_Text foodText;
     [SerializeField] TMP_Text waterText;
@@ -13,11 +12,6 @@ public class UIResourceManager : MonoBehaviour
 
     public GameObject amountTextPrefab, foodResourceInstance, woodResourceInstance, popInstance;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        population = 0;
-    }
 
     // Update is called once per frame
     void Update()
