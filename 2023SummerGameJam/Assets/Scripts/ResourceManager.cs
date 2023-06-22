@@ -70,6 +70,12 @@ public static class ResourceManager
             tempWood.replenish();
         }
     }
+    public static void ResetResources()
+    {
+        woodPoints = 0;
+        fruitPoints = 0;
+        population = 1;
+    }
 
     public static int addToWood(int amount)
     {

@@ -11,6 +11,7 @@ public class Wood : MonoBehaviour, IInteractable
         
         Debug.Log("Collected " + woodPoints + " wood!");
         ResourceManager.addToWood(woodPoints);
+        AudioManager.Instance.Play("PickupWood");
 
         deplete();
         return true;

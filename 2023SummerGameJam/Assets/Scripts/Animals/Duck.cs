@@ -37,5 +37,15 @@ public class Duck : Animal
         print("Quack");
 
         //maybe add a quack sound effect or a little cute animation for fun
+        int quackChoice = Random.Range(0, 2);
+
+        if (quackChoice == 0)
+        {
+            AudioManager.Instance.Play("Quack1");
+        }
+        else
+        {
+            AudioManager.Instance.Play("Quack2");
+        }
     }
 }
