@@ -63,9 +63,27 @@ MonoBehaviour:
     _pitch: 1
     _loop: 1
     source: {fileID: 0}
-  - name: NightTheme
-    _clip: {fileID: 8300000, guid: b6043012074e5c6488794334ebb44161, type: 3}
+  - name: Quack1
+    _clip: {fileID: 8300000, guid: c482e96a015d89f4bb7bb46fa8cfdabf, type: 3}
     _volume: 0.5
     _pitch: 1
-    _loop: 1
+    _loop: 0
+    source: {fileID: 0}
+  - name: Quack2
+    _clip: {fileID: 8300000, guid: c19c50b92420b93448cff41ba5cbd240, type: 3}
+    _volume: 0.5
+    _pitch: 1
+    _loop: 0
+    source: {fileID: 0}
+  - name: PickupFood
+    _clip: {fileID: 8300000, guid: 9a219a66c5faee84984812bffc6f626a, type: 3}
+    _volume: 0.5
+    _pitch: 1
+    _loop: 0
+    source: {fileID: 0}
+  - name: PickupWood
+    _clip: {fileID: 8300000, guid: 8cc25ef264378464f8a4c368e90a16cb, type: 3}
+    _volume: 0.5
+    _pitch: 1
+    _loop: 0
     source: {fileID: 0}

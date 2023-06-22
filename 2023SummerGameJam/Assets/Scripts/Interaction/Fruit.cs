@@ -11,6 +11,7 @@ public class Fruit : MonoBehaviour, IInteractable
 
         Debug.Log("Collected " + foodPoints + " fruit!");
         ResourceManager.addToFood(foodPoints);
+        AudioManager.Instance.Play("PickupFood");
 
         deplete();
         return true;
