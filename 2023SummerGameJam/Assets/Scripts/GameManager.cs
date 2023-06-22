@@ -84,4 +84,10 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.Stop("DayTheme");
         AudioManager.Instance.Play("MainTheme");
     }
+
+    public void DeathToMain()
+    {
+        AudioManager.Instance.Stop("DayTheme");
+        AudioManager.Instance.Play("MainTheme");
+    }
 }

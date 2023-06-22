@@ -17,6 +17,8 @@ public class CommunityManager : MonoBehaviour
     [SerializeField] TextMeshPro dayCounter;
     [SerializeField] public BuildUI buildUI;
     [HideInInspector] public Animal activeAnimal;
+    [SerializeField] GameObject deathScreenCanvas;
+    [SerializeField] GameObject mainMenuCanvas;
 
     Vector3 startShelterCamPos;
     float elaspedDayTime = 0;
@@ -72,8 +74,8 @@ public class CommunityManager : MonoBehaviour
         //Lose Condition
         if (totalAnimalsInCommunity <= 0)
         {
-            print("You Loser");
             //YOU LOSE
+            DeathScreen();
         }
 
         //Switching Days
@@ -304,5 +306,13 @@ public class CommunityManager : MonoBehaviour
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireSphere(communityArea.position, communityRadius);
+    }
+
+    public void DeathScreen()
+    {
+        mainMenuCanvas.SetActive(false);
+        deathScreenCanvas.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }
