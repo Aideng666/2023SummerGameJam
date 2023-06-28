@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animalType: 0
-  shelterPrefab: {fileID: 7337831539509590033, guid: 280a9b07f4ea8a8449cda9fc8a1aec60,
+  shelterPrefab: {fileID: 1650662191016894316, guid: 66c3f520e0b629949ad941dfe9b8c86e,
     type: 3}
   shelterCost: 10
   moveSpeed: 6
