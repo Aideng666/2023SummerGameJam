@@ -125,7 +125,7 @@ public class CommunityManager : MonoBehaviour
     }
     void DepleteFood()
     {
-        print($"Your animals ate {2 * totalAnimalsInCommunity} food during the night");
+        AlertSystem.Instance.CreateAlert($"Your animals ate {2 * totalAnimalsInCommunity} food during the night");
 
         ResourceManager.fruitPoints -= 2 * totalAnimalsInCommunity;
 
