@@ -81,6 +81,7 @@ public class WoodPecker : Animal
 
             if (currentFlightStamina <= 0)
             {
+                AlertSystem.Instance.CreateAlert("Out of Stamina!");
                 StartCoroutine(BeginDescent());
             }
         }
