@@ -26,6 +26,7 @@ public class CommunityManager : MonoBehaviour
     public bool backHomeForMorning { get; set; }
     public float dayNum { get; private set; } = 0;
     public float DayLength { get { return dayLength; } }
+    public float ElasedDayTime { get { return elaspedDayTime; } }
     public Camera ShelterCam { get { return shelterCam; } }
     public Camera MainCam { get { return mainCam; } }
     public Transform CommunityArea { get { return communityArea; } }
@@ -67,6 +68,8 @@ public class CommunityManager : MonoBehaviour
         shelters.Add(AnimalTypes.Woodpecker, 0);
         shelters.Add(AnimalTypes.Beaver, 0);
         shelters.Add(AnimalTypes.Duck, 0);
+
+        AlertSystem.Instance.CreateAlert("Welcome to Backyard Builders! Collect resources, build shelters and recruit animals to join your community.");
     }
 
     private void Update()
