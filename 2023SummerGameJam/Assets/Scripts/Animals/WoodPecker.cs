@@ -80,9 +80,9 @@ public class WoodPecker : Animal
         {
             currentFlightStamina -= Time.deltaTime;
 
-            if (currentFlightStamina <= 0 && !descending)
+            if (currentFlightStamina <= 0)
             {
-                AlertSystem.Instance.CreateAlert("Out of Stamina!");
+                if (!descending) AlertSystem.Instance.CreateAlert("Out of Stamina!");
                 StartCoroutine(BeginDescent());
 
                 descending = true;
