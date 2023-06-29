@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using static ResourceManager;
+using UnityEngine.UI;
 
 public class UIResourceManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class UIResourceManager : MonoBehaviour
     [SerializeField] TMP_Text waterText;
     [SerializeField] TMP_Text materialText;
     [SerializeField] TMP_Text populationText;
+    [SerializeField] Image dayProgressBar;
 
     public GameObject amountTextPrefab, foodResourceInstance, woodResourceInstance, popInstance;
 
@@ -19,6 +21,8 @@ public class UIResourceManager : MonoBehaviour
         foodText.text = fruitPoints.ToString();
         materialText.text = woodPoints.ToString();
         populationText.text = population.ToString();
+
+        dayProgressBar.fillAmount = CommunityManager.Instance.ElasedDayTime / CommunityManager.Instance.DayLength;
     }
 
     public void addFoodUI(int amount)

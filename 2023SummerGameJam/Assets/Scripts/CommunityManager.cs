@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,12 +21,15 @@ public class CommunityManager : MonoBehaviour
     [SerializeField] GameObject deathScreenCanvas;
     [SerializeField] GameObject mainMenuCanvas;
 
+    public event Action OnDayChange;
+
     Vector3 startShelterCamPos;
     float elaspedDayTime = 0;
 
     public bool backHomeForMorning { get; set; }
     public float dayNum { get; private set; } = 0;
     public float DayLength { get { return dayLength; } }
+    public float ElasedDayTime { get { return elaspedDayTime; } }
     public Camera ShelterCam { get { return shelterCam; } }
     public Camera MainCam { get { return mainCam; } }
     public Transform CommunityArea { get { return communityArea; } }
@@ -67,6 +71,8 @@ public class CommunityManager : MonoBehaviour
         shelters.Add(AnimalTypes.Woodpecker, 0);
         shelters.Add(AnimalTypes.Beaver, 0);
         shelters.Add(AnimalTypes.Duck, 0);
+
+        AlertSystem.Instance.CreateAlert("Welcome to Backyard Builders! Collect resources, build shelters and recruit animals to join your community.");
     }
 
     private void Update()
@@ -92,6 +98,8 @@ public class CommunityManager : MonoBehaviour
 
             dayNum++;
             dayCounter.SetText((dayNum + 1).ToString());
+
+            OnDayChange.Invoke();
         }
 
         if (!activeAnimal.IsBuildingShelter)
@@ -136,7 +144,7 @@ public class CommunityManager : MonoBehaviour
 
             for (int i = 0; i < numAnimalsStarved; i++)
             {
-                int animalChoice = Random.Range(0, 4);
+                int animalChoice = UnityEngine.Random.Range(0, 4);
 
                 if (animalsInCommunity[animalChoice].Count > 0)
                 {

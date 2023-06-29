@@ -10,6 +10,7 @@ public class WoodPecker : Animal
 
     float currentFlightStamina;
     bool flightActivated = false;
+    bool descending;
 
     protected override void Start()
     {
@@ -79,10 +80,12 @@ public class WoodPecker : Animal
         {
             currentFlightStamina -= Time.deltaTime;
 
-            if (currentFlightStamina <= 0)
+            if (currentFlightStamina <= 0 && !descending)
             {
                 AlertSystem.Instance.CreateAlert("Out of Stamina!");
                 StartCoroutine(BeginDescent());
+
+                descending = true;
             }
         }
     }
@@ -92,6 +95,8 @@ public class WoodPecker : Animal
     {
         if (!flightActivated && characterController.isGrounded)
         {
+            descending = false;
+
             currentFlightStamina += Time.deltaTime * 2;
 
             if (currentFlightStamina > maxFlightStamina)
