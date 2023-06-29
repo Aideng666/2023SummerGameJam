@@ -14,7 +14,7 @@ public class CommunityManager : MonoBehaviour
     [SerializeField] CinemachineFreeLook virtualCam;
     [SerializeField] float communityRadius = 20;
     [SerializeField] float camMovespeed = 5;
-    [SerializeField] float dayLength = 300f; // in seconds
+    [SerializeField] float dayLength = 600f; // in seconds
     [SerializeField] TextMeshProUGUI dayCounter;
     [SerializeField] public BuildUI buildUI;
     [HideInInspector] public Animal activeAnimal;
