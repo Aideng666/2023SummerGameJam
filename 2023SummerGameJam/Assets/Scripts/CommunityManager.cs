@@ -284,24 +284,28 @@ public class CommunityManager : MonoBehaviour
             case AnimalTypes.Squirrel:
 
                 animalsInCommunity[0].Add(animal);
+                HotkeyManager.Instance.expandIcon(0);
 
                 break;
 
             case AnimalTypes.Woodpecker:
 
                 animalsInCommunity[1].Add(animal);
+                HotkeyManager.Instance.expandIcon(1);
 
                 break;
 
             case AnimalTypes.Beaver:
 
                 animalsInCommunity[2].Add(animal);
+                HotkeyManager.Instance.expandIcon(2);
 
                 break;
 
             case AnimalTypes.Duck:
 
                 animalsInCommunity[3].Add(animal);
+                HotkeyManager.Instance.expandIcon(3);
 
                 break;
         }

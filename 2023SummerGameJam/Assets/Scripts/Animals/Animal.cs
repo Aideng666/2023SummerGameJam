@@ -222,6 +222,10 @@ public class Animal : MonoBehaviour, IInteractable
         AnimalPool.Instance.AddAnimaltoPool(gameObject, AnimalType);
 
         CommunityManager.Instance.animalsInCommunity[(int)AnimalType].RemoveAt(0);
+        if (CommunityManager.Instance.animalsInCommunity[(int)AnimalType].Count < 1)
+        {
+            HotkeyManager.Instance.collapseIcon((int)AnimalType);
+        }
 
         ResourceManager.addToPop(-1);
     }
