@@ -196,10 +196,12 @@ public class Animal : MonoBehaviour, IInteractable
             if (ResourceManager.woodPoints < shelterCost)
             {
                 print("Not enough wood to build shelter");
+                AlertSystem.Instance.CreateAlert("Not enough wood to build shelter");
             }
             if (Vector3.Distance(placeableShelter.transform.position, CommunityManager.Instance.CommunityArea.position) > CommunityManager.Instance.CommunityRadius)
             {
                 print("Cannot build shelter outside of community zone");
+                AlertSystem.Instance.CreateAlert("Cannot build shelter outside of community zone");
             }
         }
     }
