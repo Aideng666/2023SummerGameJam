@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,6 +20,8 @@ public class CommunityManager : MonoBehaviour
     [HideInInspector] public Animal activeAnimal;
     [SerializeField] GameObject deathScreenCanvas;
     [SerializeField] GameObject mainMenuCanvas;
+
+    public event Action OnDayChange;
 
     Vector3 startShelterCamPos;
     float elaspedDayTime = 0;
@@ -95,6 +98,8 @@ public class CommunityManager : MonoBehaviour
 
             dayNum++;
             dayCounter.SetText((dayNum + 1).ToString());
+
+            OnDayChange.Invoke();
         }
 
         if (!activeAnimal.IsBuildingShelter)
@@ -139,7 +144,7 @@ public class CommunityManager : MonoBehaviour
 
             for (int i = 0; i < numAnimalsStarved; i++)
             {
-                int animalChoice = Random.Range(0, 4);
+                int animalChoice = UnityEngine.Random.Range(0, 4);
 
                 if (animalsInCommunity[animalChoice].Count > 0)
                 {

@@ -9,7 +9,7 @@ public class Fruit : MonoBehaviour, IInteractable
     {
         if (!CanInteract()) return false;
 
-        Debug.Log("Collected " + foodPoints + " fruit!");
+        //Debug.Log("Collected " + foodPoints + " fruit!");
         ResourceManager.addToFood(foodPoints);
         AudioManager.Instance.Play("PickupFood");
 

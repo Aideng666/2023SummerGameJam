@@ -9,7 +9,7 @@ public class Wood : MonoBehaviour, IInteractable
     {
         if (!CanInteract()) return false;
         
-        Debug.Log("Collected " + woodPoints + " wood!");
+        //Debug.Log("Collected " + woodPoints + " wood!");
         ResourceManager.addToWood(woodPoints);
         AudioManager.Instance.Play("PickupWood");
 

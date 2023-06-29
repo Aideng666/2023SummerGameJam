@@ -41,6 +41,8 @@ public class Animal : MonoBehaviour, IInteractable
     {
         isRecruited = false;
         isActiveAnimal = false;
+
+        CommunityManager.Instance.OnDayChange += TeleportAllHome;
     }
 
     // Start is called before the first frame update
@@ -237,6 +239,15 @@ public class Animal : MonoBehaviour, IInteractable
     public void TeleportHome()
     {
         transform.position = CommunityManager.Instance.CommunityArea.position;
+    }
+
+    void TeleportAllHome()
+    {
+        if (isActiveAnimal)
+        {
+            print("Teleporting Home");
+            TeleportHome();
+        }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
