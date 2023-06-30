@@ -123,8 +123,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   redOutBlueIn:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -10
   greenOutRedIn:
     m_OverrideState: 0
     m_Value: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   blueOutBlueIn:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 100
 --- !u!114 &6318599402218008739
 MonoBehaviour:
