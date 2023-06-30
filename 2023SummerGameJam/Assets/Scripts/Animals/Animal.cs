@@ -206,7 +206,7 @@ public class Animal : MonoBehaviour, IInteractable
         }
     }
 
-    public void Die()
+    public void Die(bool coyoteAttack = false)
     {
         if (IsActiveAnimal)
         {
@@ -225,6 +225,7 @@ public class Animal : MonoBehaviour, IInteractable
 
         if (isRecruited)
         {
+            if (coyoteAttack) AlertSystem.Instance.CreateAlert($"A Coyote has killed one of your animals!");
             CommunityManager.Instance.animalsInCommunity[(int)AnimalType].RemoveAt(0);
             if (CommunityManager.Instance.animalsInCommunity[(int)AnimalType].Count < 1)
             {

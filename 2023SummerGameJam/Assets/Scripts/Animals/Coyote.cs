@@ -171,7 +171,7 @@ public class Coyote : MonoBehaviour
                     {
                         if (hit.TryGetComponent(out Animal animal))
                         {
-                            animal.Die();
+                            animal.Die(true);
                         }
                     }
 
