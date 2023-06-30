@@ -1,7 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Resources;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -88,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     public void DeathToMain()
     {
+        ResourceManager.ResetResources();
         AudioManager.Instance.Stop("DayTheme");
         AudioManager.Instance.Play("MainTheme");
     }
